@@ -1,0 +1,48 @@
+<template>
+    <div>
+        <h2>vue-cron ⏰</h2>
+        <h3>The current time is {{ currentTime }}</h3>
+        <p>( updated every 5 seconds by cron )</p>
+        <button v-if="cronRunning" v-on:click="stopTimer">Stop Timer</button>
+        <button v-if="!cronRunning" v-on:click="startTimer">Start Timer</button>
+    </div>
+</template>
+<script>
+    export default{
+        data(){
+            return {
+                currentTime: undefined,
+                cronRunning: true
+            }
+        },
+        methods:{
+          load(){
+              this.currentTime = (new Date().toLocaleTimeString());
+          },
+          stopTimer(){
+              this.$cron.stop(this, 'load');
+              this.cronRunning = false;
+          },
+          startTimer(){
+            this.$cron.start(this, 'load');
+            this.cronRunning = true;
+          }
+        },
+        mounted(){
+            this.load();
+        },
+        cron:{
+            time: 5000,
+            method: 'load'
+        }
+    }
+</script>
+<style>
+    div{
+        text-align:center;
+    }
+
+    h3{
+        font-size:6rem;
+    }
+</style>
