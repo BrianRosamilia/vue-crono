@@ -7405,44 +7405,51 @@ var mapOrSingle = function mapOrSingle(obj, fn) {
     }
 };
 
+var createTimer = function createTimer(cron) {
+    var _this = this;
+
+    cron._cron = {};
+    cron._cron.timer = setInterval(function () {
+        if (cron._cron.disabled) return;
+        _this.$options.methods[cron['method']].call(_this);
+    }, cron.time);
+};
+
 var cron = function cron() {
     var saveMount = _vue2.default.prototype.$mount;
 
     _vue2.default.prototype.$mount = function () {
-        var _this = this;
-
         for (var _len = arguments.length, allArgs = Array(_len), _key = 0; _key < _len; _key++) {
             allArgs[_key] = arguments[_key];
         }
 
         saveMount.call.apply(saveMount, [this].concat(allArgs));
         if (this.$options.cron !== undefined) {
-            mapOrSingle(this.$options.cron, function (cron) {
-                cron._cron = {};
-                cron._cron.timer = setInterval(function () {
-                    if (cron._cron.disabled) return;
-                    _this.$options.methods[cron['method']].call(_this);
-                }, cron.time);
-            });
+            mapOrSingle(this.$options.cron, createTimer.bind(this));
         }
     };
 };
 
-_vue2.default.prototype.$cron = {
-    stop: function stop(component, method) {
-        mapOrSingle(component.$options.cron, function (cron) {
-            if (cron['method'] === method) {
-                cron._cron.disabled = true;
-            }
-        });
-    },
-    start: function start(component, method) {
-        mapOrSingle(component.$options.cron, function (cron) {
-            if (cron['method'] === method) {
-                cron._cron.disabled = false;
-            }
-        });
-    }
+Object.defineProperty(_vue2.default.prototype, '$cron', { get: function get() {
+        return this;
+    } });
+
+_vue2.default.prototype.$cron.stop = function (method) {
+    mapOrSingle(this.$options.cron, function (cron) {
+        if (cron['method'] === method) {
+            clearInterval(cron._cron.timer);
+        }
+    });
+};
+
+_vue2.default.prototype.$cron.start = function (method) {
+    var _this2 = this;
+
+    mapOrSingle(this.$options.cron, function (cron) {
+        if (cron['method'] === method) {
+            createTimer.call(_this2, cron);
+        }
+    });
 };
 
 exports.default = cron;
@@ -7475,11 +7482,11 @@ exports.default = {
             this.currentTime = new Date().toLocaleTimeString();
         },
         stopTimer: function stopTimer() {
-            this.$cron.stop(this, 'load');
+            this.$cron.stop('load');
             this.cronRunning = false;
         },
         startTimer: function startTimer() {
-            this.$cron.start(this, 'load');
+            this.$cron.start('load');
             this.cronRunning = true;
         }
     },
@@ -7542,4 +7549,4 @@ window.onload = function () {
     });
 };
 },{"Vue":"V54/","./index.js":"Focm","./app.vue":"hWNS"}]},{},["Zdfz"], null)
-//# sourceMappingURL=example.805041ac.map
+//# sourceMappingURL=example.67b169d8.map

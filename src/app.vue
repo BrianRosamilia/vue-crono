@@ -20,11 +20,11 @@
               this.currentTime = (new Date().toLocaleTimeString());
           },
           stopTimer(){
-              this.$cron.stop(this, 'load');
+              this.$cron.stop('load');
               this.cronRunning = false;
           },
           startTimer(){
-            this.$cron.start(this, 'load');
+            this.$cron.start('load');
             this.cronRunning = true;
           }
         },
@@ -38,11 +38,19 @@
     }
 </script>
 <style>
+    body{
+        font-family:Helvetica
+    }
+
+    h3{
+        font-family:"Times New Roman";
+    }
+
     div{
         text-align:center;
     }
 
     h3{
-        font-size:6rem;
+        font-size:5rem;
     }
 </style>

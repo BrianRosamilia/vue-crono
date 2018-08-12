@@ -1,23 +1,12 @@
 {
-  "sourceMaps": "inline",
-
   "plugins": [
-    ["transform-runtime",
-      {
-        "polyfill": false,
-        "regenerator": true
-      }],
     "transform-object-rest-spread",
-    ["transform-inline-environment-variables", {
-      "include": [
-        "NODE_ENV", "ROOT"
-      ]
-    }]
+    ["transform-inline-environment-variables"]
   ],
   "presets": [
     ["env", {
       "targets": {
-        "chrome": 62
+        "chrome": 46
       }
     }]
   ]
