@@ -1,7 +1,7 @@
 import Vue from 'Vue';
-import cron from './index.js';
-Vue.use(cron);
-import app from './app.vue';
+import crono from './index.js';
+Vue.use(crono);
+import app from './bootstrap.vue';
 
 window.onload = () => {
     new Vue({

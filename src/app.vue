@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>vue-cron ⏰</h2>
+        <h2>vue-crono ⏰</h2>
         <h3>The current time is {{ currentTime }}</h3>
         <p>( updated every 5 seconds by cron )</p>
         <button v-if="cronRunning" v-on:click="stopTimer">Stop Timer</button>

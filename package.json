@@ -1,5 +1,5 @@
 {
-  "name": "vue-cron",
+  "name": "vue-crono",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,8 +9,15 @@
     "dist": "cross-env NODE_ENV=production && parcel build ./src/index.js --out-dir ./dist --no-source-maps",
     "build": "cross-env NODE_ENV=production && babel ./src/index.js --out-file ./index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "vue",
+    "vue schedule",
+    "vue cron",
+    "cron",
+    "vue poll"
+  ],
+  "author": "Brian Rosamilia",
+  "license": "MIT",
   "devDependencies": {
     "@vue/component-compiler-utils": "^2.0.0",
     "babel-cli": "^6.26.0",
@@ -22,6 +29,7 @@
     "cross-env": "^5.2.0",
     "eslint": "^4.10.0",
     "eslint-plugin-vue": "^5.0.0-beta.2",
+    "jest": "^23.5.0",
     "moment": "^2.8.3",
     "npm-run-all": "^4.1.2",
     "parcel-bundler": "^1.9.7",

@@ -7408,9 +7408,9 @@ var mapOrSingle = function mapOrSingle(obj, fn) {
 var createTimer = function createTimer(cron) {
     var _this = this;
 
-    cron._cron = {};
-    cron._cron.timer = setInterval(function () {
-        if (cron._cron.disabled) return;
+    this._cron = {};
+    this._cron.timer = setInterval(function () {
+        if (_this._cron.disabled) return;
         _this.$options.methods[cron['method']].call(_this);
     }, cron.time);
 };
@@ -7435,19 +7435,21 @@ Object.defineProperty(_vue2.default.prototype, '$cron', { get: function get() {
     } });
 
 _vue2.default.prototype.$cron.stop = function (method) {
+    var _this2 = this;
+
     mapOrSingle(this.$options.cron, function (cron) {
         if (cron['method'] === method) {
-            clearInterval(cron._cron.timer);
+            clearInterval(_this2._cron.timer);
         }
     });
 };
 
 _vue2.default.prototype.$cron.start = function (method) {
-    var _this2 = this;
+    var _this3 = this;
 
     mapOrSingle(this.$options.cron, function (cron) {
         if (cron['method'] === method) {
-            createTimer.call(_this2, cron);
+            createTimer.call(_this3, cron);
         }
     });
 };
@@ -7507,7 +7509,7 @@ exports.default = {
     
         /* template */
         Object.assign($f19e2f, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('h2',[_vm._v("vue-cron ⏰")]),_vm._v(" "),_c('h3',[_vm._v("The current time is "+_vm._s(_vm.currentTime))]),_vm._v(" "),_c('p',[_vm._v("( updated every 5 seconds by cron )")]),_vm._v(" "),(_vm.cronRunning)?_c('button',{on:{"click":_vm.stopTimer}},[_vm._v("Stop Timer")]):_vm._e(),_vm._v(" "),(!_vm.cronRunning)?_c('button',{on:{"click":_vm.startTimer}},[_vm._v("Start Timer")]):_vm._e()])}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('h2',[_vm._v("vue-crono ⏰")]),_vm._v(" "),_c('h3',[_vm._v("The current time is "+_vm._s(_vm.currentTime))]),_vm._v(" "),_c('p',[_vm._v("( updated every 5 seconds by cron )")]),_vm._v(" "),(_vm.cronRunning)?_c('button',{on:{"click":_vm.stopTimer}},[_vm._v("Stop Timer")]):_vm._e(),_vm._v(" "),(!_vm.cronRunning)?_c('button',{on:{"click":_vm.startTimer}},[_vm._v("Start Timer")]):_vm._e()])}
 var staticRenderFns = []
 
           return {
@@ -7519,7 +7521,50 @@ var staticRenderFns = []
           };
         })());
       
-},{}],"Zdfz":[function(require,module,exports) {
+},{}],"N7JA":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _app = require('./app.vue');
+
+var _app2 = _interopRequireDefault(_app);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    components: {
+        app: _app2.default
+    }
+}; //
+//
+//
+//
+//
+//
+        var $a72f1a = exports.default || module.exports;
+      
+      if (typeof $a72f1a === 'function') {
+        $a72f1a = $a72f1a.options;
+      }
+    
+        /* template */
+        Object.assign($a72f1a, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('app'),_vm._v(" "),_c('app')],1)}
+var staticRenderFns = []
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+},{"./app.vue":"hWNS"}],"Zdfz":[function(require,module,exports) {
 'use strict';
 
 var _Vue = require('Vue');
@@ -7530,9 +7575,9 @@ var _index = require('./index.js');
 
 var _index2 = _interopRequireDefault(_index);
 
-var _app = require('./app.vue');
+var _bootstrap = require('./bootstrap.vue');
 
-var _app2 = _interopRequireDefault(_app);
+var _bootstrap2 = _interopRequireDefault(_bootstrap);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7544,9 +7589,9 @@ window.onload = function () {
         name: 'app',
         el: '#app',
         render: function render(h) {
-            return h(_app2.default);
+            return h(_bootstrap2.default);
         }
     });
 };
-},{"Vue":"V54/","./index.js":"Focm","./app.vue":"hWNS"}]},{},["Zdfz"], null)
-//# sourceMappingURL=example.67b169d8.map
+},{"Vue":"V54/","./index.js":"Focm","./bootstrap.vue":"N7JA"}]},{},["Zdfz"], null)
+//# sourceMappingURL=example.75f6e345.map
