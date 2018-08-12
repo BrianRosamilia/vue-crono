@@ -11,10 +11,13 @@ const mapOrSingle = function(obj, fn){
 
 const createTimer = function(cron){
     this._cron = {};
-    this._cron.timer = setInterval(() => {
-        if(this._cron.disabled) return;
-        this.$options.methods[cron['method']].call(this);
-    }, cron.time);
+    const method = cron['method'];
+    this._cron[method] = {
+        timer: setInterval(() => {
+            if(this._cron.disabled) return;
+            this.$options.methods[method].call(this);
+        }, cron.time)
+    };
 };
 
 const cron = () => {
@@ -33,7 +36,7 @@ Object.defineProperty(Vue.prototype, '$cron', { get: function(){ return this } }
 Vue.prototype.$cron.stop = function(method){
     mapOrSingle(this.$options.cron, cron => {
         if (cron['method'] === method){
-            clearInterval(this._cron.timer);
+            clearInterval(this._cron[cron['method']].timer);
         }
     });
 };

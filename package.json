@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "buildExample": "cross-env NODE_ENV=development&& parcel build ./src/index.html --no-minify --public-url ./ --out-dir ./build",
     "dist": "cross-env NODE_ENV=production && parcel build ./src/index.js --out-dir ./dist --no-source-maps",
     "build": "cross-env NODE_ENV=production && babel ./src/index.js --out-file ./index.js"
@@ -37,9 +37,20 @@
     "stylelint-config-standard": "^17.0.0",
     "stylelint-scss": "^1.4.4",
     "uglify-es": "^3.1.9",
-    "vue-template-compiler": "^2.5.16"
+    "vue-template-compiler": "^2.5.16",
+    "jest-vue-preprocessor": "^1.4.0"
   },
   "dependencies": {
     "vue": "^2.5.17"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
+    }
   }
 }
