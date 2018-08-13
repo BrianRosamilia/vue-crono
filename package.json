@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
+    "coverage": "jest --runInBand --coverage",
     "buildExample": "cross-env NODE_ENV=development&& parcel build ./src/index.html --no-minify --public-url ./ --out-dir ./build",
     "dist": "cross-env NODE_ENV=production && parcel build ./src/index.js --out-dir ./dist --no-source-maps",
     "build": "cross-env NODE_ENV=production && babel ./src/index.js --out-file ./index.js"
