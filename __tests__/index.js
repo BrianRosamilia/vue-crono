@@ -48,6 +48,20 @@ test('Run 5 second job for 60 seconds, job will run 12 times plus 1 time for ini
     clearCronTimers(mounted);
 });
 
+test('Start a job multiple times, only one job runs', () => {
+    const mounted = new Cmp();
+    mounted.$mount();
+    mounted.startTimer();
+    mounted.startTimer();
+    mounted.startTimer();
+
+    jest.advanceTimersByTime(6000);
+
+    expect(spyLoad.mock.calls.length).toBe(2);
+
+    clearCronTimers(mounted);
+});
+
 test('Stopping a running job and restarting it gives the correct number of executions', () => {
     const mounted = new Cmp();
     mounted.$mount();// 1 execution

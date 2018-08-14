@@ -12,10 +12,14 @@ const mapOrSingle = function(obj, fn){
 const createTimer = function(cron){
     this._cron = this._cron || {};
     const method = cron['method'];
+
+    if(this._cron[method] && this._cron[method].timerRunning) return;
+
     this._cron[method] = {
         timer: setInterval(() => {
             this.$options.methods[method].call(this);
-        }, cron.time)
+        }, cron.time),
+        timerRunning: true
     };
 };
 
@@ -38,6 +42,7 @@ Vue.prototype.$cron.stop = function(method){
         if (cron['method'] === method){
             locatedCronMethod = true;
             clearInterval(this._cron[cron['method']].timer);
+            this._cron[cron['method']].timerRunning = false;
         }
     });
     if(!locatedCronMethod){
