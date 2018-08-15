@@ -1,5 +1,7 @@
 # vue-crono
 
+[![CircleCI](https://circleci.com/gh/BrianRosamilia/vue-crono.svg?style=shield)](https://circleci.com/gh/BrianRosamilia/vue-crono)
+
 Easily schedule and manage cron jobs in Vue component
 
 [jsfiddle example](https://jsfiddle.net/brianrosamilia/7fq4nrbe)
