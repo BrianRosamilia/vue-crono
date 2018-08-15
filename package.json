@@ -1,16 +1,17 @@
 {
   "name": "vue-crono",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Simple timers/jobs for vue components",
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand",
     "coverage": "jest --runInBand --coverage",
     "buildExample": "cross-env NODE_ENV=development&& parcel build ./src/index.html --no-minify --public-url ./ --out-dir ./docs",
-    "dist": "cross-env NODE_ENV=production && parcel build ./src/index.js --out-dir ./dist --no-source-maps",
+    "dist": "cross-env NODE_ENV=production && parcel build ./src/browserBuild.js --out-file ./dist/index.js --no-source-maps",
     "buildTranspiledModule": "cross-env NODE_ENV=production && babel ./src/index.js --out-file ./index.js",
     "build": "npm-run-all buildExample buildTranspiledModule dist"
   },
+  "repository": "https://github.com/BrianRosamilia/vue-crono",
   "keywords": [
     "vue",
     "vue schedule",
