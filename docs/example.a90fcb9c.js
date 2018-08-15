@@ -7390,13 +7390,6 @@ exports.default = Vue;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var mapOrSingle = function mapOrSingle(obj, fn) {
     if (obj.constructor !== Array) {
         return fn(obj);
@@ -7408,57 +7401,68 @@ var mapOrSingle = function mapOrSingle(obj, fn) {
 var createTimer = function createTimer(cron) {
     var _this = this;
 
-    this._cron = {};
+    this._cron = this._cron || {};
     var method = cron['method'];
+
+    if (this._cron[method] && this._cron[method].timerRunning) return;
+
     this._cron[method] = {
         timer: setInterval(function () {
-            if (_this._cron.disabled) return;
             _this.$options.methods[method].call(_this);
-        }, cron.time)
+        }, cron.time),
+        timerRunning: true
     };
 };
 
-var cron = function cron() {
-    var saveMount = _vue2.default.prototype.$mount;
+var cron = function cron(Vue) {
+    Vue.mixin({
+        mounted: function mounted() {
+            var _this2 = this;
 
-    _vue2.default.prototype.$mount = function () {
-        for (var _len = arguments.length, allArgs = Array(_len), _key = 0; _key < _len; _key++) {
-            allArgs[_key] = arguments[_key];
-        }
+            if (this.$options.cron !== undefined) {
+                mapOrSingle(this.$options.cron, createTimer.bind(this));
+            }
 
-        saveMount.call.apply(saveMount, [this].concat(allArgs));
-        if (this.$options.cron !== undefined) {
-            mapOrSingle(this.$options.cron, createTimer.bind(this));
-        }
-    };
-};
-
-Object.defineProperty(_vue2.default.prototype, '$cron', { get: function get() {
-        return this;
-    } });
-
-_vue2.default.prototype.$cron.stop = function (method) {
-    var _this2 = this;
-
-    mapOrSingle(this.$options.cron, function (cron) {
-        if (cron['method'] === method) {
-            clearInterval(_this2._cron[cron['method']].timer);
-        }
-    });
-};
-
-_vue2.default.prototype.$cron.start = function (method) {
-    var _this3 = this;
-
-    mapOrSingle(this.$options.cron, function (cron) {
-        if (cron['method'] === method) {
-            createTimer.call(_this3, cron);
+            this.$cron = {
+                stop: function stop(method) {
+                    var locatedCronMethod = false;
+                    mapOrSingle(_this2.$options.cron, function (cron) {
+                        if (cron['method'] === method) {
+                            locatedCronMethod = true;
+                            clearInterval(_this2._cron[cron['method']].timer);
+                            _this2._cron[cron['method']].timerRunning = false;
+                        }
+                    });
+                    if (!locatedCronMethod) {
+                        throw new Error('Cron method \'' + cron['method'] + '\' does not exist and cannot be stopped.');
+                    }
+                },
+                start: function start(method) {
+                    var locatedCronMethod = false;
+                    mapOrSingle(_this2.$options.cron, function (cron) {
+                        if (cron['method'] === method) {
+                            locatedCronMethod = true;
+                            createTimer.call(_this2, cron);
+                        }
+                    });
+                    if (!locatedCronMethod) {
+                        throw new Error('Cron method \'' + cron['method'] + '\' does not exist and cannot be started.');
+                    }
+                }
+            };
+        },
+        beforeDestroy: function beforeDestroy() {
+            for (var prop in this._cron) {
+                if (this._cron[prop] !== undefined) {
+                    clearInterval(this._cron[prop].timer);
+                }
+            }
         }
     });
 };
 
 exports.default = cron;
-},{"vue":"V54/"}],"hWNS":[function(require,module,exports) {
+},{}],"hWNS":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7596,4 +7600,4 @@ window.onload = function () {
     });
 };
 },{"Vue":"V54/","./index.js":"Focm","./bootstrap.vue":"N7JA"}]},{},["Zdfz"], null)
-//# sourceMappingURL=example.3aeb2f08.map
+//# sourceMappingURL=example.a90fcb9c.map

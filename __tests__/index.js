@@ -17,12 +17,12 @@ afterEach(() => {
 test('Schedule one job method, one Scheduled task will be called.', () => {
     const mounted = new Cmp();
     mounted.$mount();
-    //jest.advanceTimersByTime(5000);
+
     jest.runOnlyPendingTimers();
 
     expect(spyLoad.mock.calls.length).toBe(2);
 
-    clearCronTimers(mounted);
+    mounted.$destroy();
 });
 
 test('Stop job, jobs will not execute for timer', () => {
@@ -34,7 +34,7 @@ test('Stop job, jobs will not execute for timer', () => {
 
     expect(spyLoad.mock.calls.length).toBe(1);
 
-    clearCronTimers(mounted);
+    mounted.$destroy();
 });
 
 test('Run 5 second job for 60 seconds, job will run 12 times plus 1 time for initial load', () => {
@@ -45,7 +45,7 @@ test('Run 5 second job for 60 seconds, job will run 12 times plus 1 time for ini
 
     expect(spyLoad.mock.calls.length).toBe(13);
 
-    clearCronTimers(mounted);
+    mounted.$destroy();
 });
 
 test('Start a job multiple times, only one job runs', () => {
@@ -59,7 +59,7 @@ test('Start a job multiple times, only one job runs', () => {
 
     expect(spyLoad.mock.calls.length).toBe(2);
 
-    clearCronTimers(mounted);
+    mounted.$destroy();
 });
 
 test('Stopping a running job and restarting it gives the correct number of executions', () => {
@@ -74,7 +74,7 @@ test('Stopping a running job and restarting it gives the correct number of execu
 
     expect(spyLoad.mock.calls.length).toBe(4);
 
-    clearCronTimers(mounted);
+    mounted.$destroy();
 });
 
 test('Stopping or starting a cron job with a name that doesn\'t exist throws an error', () => {
@@ -89,7 +89,7 @@ test('Stopping or starting a cron job with a name that doesn\'t exist throws an 
         mounted.$cron.stop('loading123');
     }).toThrow();
 
-    clearCronTimers(mounted);
+    mounted.$destroy();
 });
 
 test('Array of multiple timers on a component will function properly', () => {
@@ -104,13 +104,5 @@ test('Array of multiple timers on a component will function properly', () => {
 
     expect(spyLoad.mock.calls.length).toBe(7);
 
-    clearCronTimers(mounted);
+    mounted.$destroy();
 });
-
-function clearCronTimers(mounted){
-    for(const prop in mounted._cron){
-        if(mounted._cron[prop] !== undefined){
-            clearInterval(mounted._cron[prop].timer);// have to clear timer(s) after each test or spy gets polluted
-        }
-    }
-}
