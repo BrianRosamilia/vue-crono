@@ -21,9 +21,9 @@ import crono from 'vue-crono';
 Vue.use(crono);
 ```
 
-**or** include from [https://unpkg.com/vue-crono@1.0.4/dist/index.js](https://unpkg.com/vue-crono@1.0.4/dist/index.js)
+**or** include from [https://unpkg.com/vue-crono@1.0.5/dist/index.js](https://unpkg.com/vue-crono@1.0.5/dist/index.js)
 
-`<script src="https://unpkg.com/vue-crono@1.0.4/dist/index.js"></script>` which will put the plugin on `window.crono`
+`<script src="https://unpkg.com/vue-crono@1.0.5/dist/index.js"></script>` which will put the plugin on `window.crono`
 
 **or** npm install the package and browse to `node_modules/vue-cron/dist/index.js` and copy the file into your application
 
