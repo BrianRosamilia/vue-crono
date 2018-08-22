@@ -10,8 +10,6 @@ Easily schedule and manage cron jobs in Vue component
 
 [Project Example Source here](https://github.com/BrianRosamilia/vue-crono/blob/master/src/app.vue)
 
-Codepen Example:
-
 ## Installation
 
 ```
