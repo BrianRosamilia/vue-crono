@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/BrianRosamilia/vue-crono.svg?style=shield)](https://circleci.com/gh/BrianRosamilia/vue-crono)
 
-Easily schedule and manage cron jobs in Vue component
+Easily schedule and manage cron jobs in Vue components
 
 [jsfiddle example](https://jsfiddle.net/brianrosamilia/7fq4nrbe)
 
@@ -51,6 +51,7 @@ Other use cases:
  * Refreshing data from a service periodically
  * Warning a user about a time sensitive action
 
+Sample:
 ```javascript
 export default{
     data(){
@@ -68,6 +69,18 @@ export default{
         method: 'load'
     }
 }
+```
+
+Multiple cron definition:
+```javascript
+cron:[{
+    time: 5000,
+    method: 'load',
+},
+{
+    time: 32000,
+    method: 'stopTimer'
+}]
 ```
 
 ## API
