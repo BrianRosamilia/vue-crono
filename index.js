@@ -66,11 +66,16 @@ var cron = function cron(Vue) {
                     }
                 },
                 time: function time(method, _time) {
-                    var elapsed = +new Date() - _this2._cron[method].lastInvocation;
+                    var currentDate = +new Date();
+
+                    if (!_this2._cron[method].timerRunning) {
+                        _this2._cron[method].lastInvocation = currentDate;
+                    }
+                    var elapsed = currentDate - _this2._cron[method].lastInvocation;
 
                     _this2.$cron.stop(method);
 
-                    if (elapsed >= _time) {
+                    if (elapsed > _time) {
                         _this2.$options.methods[method].call(_this2);
                         createTimer.call(_this2, { method, time: _time });
                     } else {
