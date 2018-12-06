@@ -97,4 +97,6 @@ and
 
 You can adjust the time of existing jobs, even while they're running, using
 
-`this.$cron.time(methodName, time)` (time is in milliseconds).  This method is smart enough to be aware if the new job time has been passed (if decreasing the timer length) as well as if you're extending the timer time by adding the time already surpassed.  Adjusting the time on a stopped job will start it from scratch. See unit tests if curious about this behavior!
+`this.$cron.time(methodName, time)`  
+
+This method is intelligent enough to know if the timer should have been invoked when decreasing the time of a job as well as extending the time to the next job run if you're increasing the timer.  Adjusting the time on a stopped job will behave as though you started it from scratch. (See unit tests if curious about this behavior)
