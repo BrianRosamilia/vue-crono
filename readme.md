@@ -81,3 +81,7 @@ and
 `this.$cron.start(methodName)`
 
 *Note:* Jobs are restarted from the beginning after being stopped.  Timers are cleaned up when components are destroyed.
+
+You can adjust the time of existing jobs, even while they're running, using
+
+`this.$cron.time(methodName, time)` (time is in milliseconds).  This method is smart enough to be aware if the new job time has been passed (if decreasing the timer length) as well as if you're extending the timer time by adding the time already surpassed.  Adjusting the time on a stopped job will start it from scratch. See unit tests if curious about this behavior!

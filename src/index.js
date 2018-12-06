@@ -9,15 +9,18 @@ const mapOrSingle = function(obj, fn){
 
 const createTimer = function(cron){
     this._cron = this._cron || {};
-    const method = cron['method'];
+    const method = cron.method;
 
     if(this._cron[method] && this._cron[method].timerRunning) return;
 
     this._cron[method] = {
         timer: setInterval(() => {
             this.$options.methods[method].call(this);
+            this._cron[method].lastInvocation = + new Date();
         }, cron.time),
-        timerRunning: true
+        timerRunning: true,
+        time: cron.time,
+        lastInvocation: + new Date()
     };
 };
 
@@ -32,28 +35,49 @@ const cron = Vue => {
                 stop: method => {
                     let locatedCronMethod = false;
                     mapOrSingle(this.$options.cron, cron => {
-                        if (cron['method'] === method){
+                        if (cron.method === method){
                             locatedCronMethod = true;
-                            clearInterval(this._cron[cron['method']].timer);
-                            this._cron[cron['method']].timerRunning = false;
+                            clearInterval(this._cron[cron.method].timer);
+                            this._cron[cron.method].timerRunning = false;
                         }
                     });
                     if (!locatedCronMethod){
-                        throw new Error(`Cron method '${cron['method']}' does not exist and cannot be stopped.`);
+                        throw new Error(`Cron method '${method}' does not exist and cannot be stopped.`);
                     }
                 },
                 start: method => {
                     let locatedCronMethod = false;
                     mapOrSingle(this.$options.cron, cron => {
-                        if (cron['method'] === method){
+                        if (cron.method === method){
                             locatedCronMethod = true;
                             createTimer.call(this, cron);
                         }
                     });
                     if (!locatedCronMethod){
-                        throw new Error(`Cron method '${cron['method']}' does not exist and cannot be started.`);
+                        throw new Error(`Cron method '${method}' does not exist and cannot be started.`);
                     }
                 },
+                time: (method, time) => {
+                    const currentDate = + new Date();
+
+                    if(!this._cron[method].timerRunning){
+                        this._cron[method].lastInvocation = currentDate;
+                    }
+                    const elapsed = currentDate - this._cron[method].lastInvocation;
+
+                    this.$cron.stop(method);
+
+                    if(elapsed > time){
+                        this.$options.methods[method].call(this);
+                        createTimer.call(this, { method, time});
+                    }
+                    else{
+                        setTimeout(() => {
+                            this.$options.methods[method].call(this);
+                            createTimer.call(this, { method, time});
+                        }, time - elapsed);
+                    }
+                }
             };
         },
         beforeDestroy(){

@@ -5,6 +5,8 @@
         <p>( updated every 5 seconds by cron )</p>
         <button v-if="cronRunning" v-on:click="stopTimer">Stop Timer</button>
         <button v-if="!cronRunning" v-on:click="startTimer">Start Timer</button>
+       <!-- <button v-on:click="adjustTimer(10)">Change interval to 10 second updates</button>
+        <button v-on:click="adjustTimer(5)">Change interval to 5 second updates</button>-->
     </div>
 </template>
 <script>
@@ -13,9 +15,9 @@
             return {
                 currentTime: undefined,
                 cronRunning: true
-            }
+            };
         },
-        methods:{
+        methods: {
           load(){
               this.currentTime = (new Date().toLocaleTimeString());
           },
@@ -26,16 +28,19 @@
           startTimer(){
             this.$cron.start('load');
             this.cronRunning = true;
+          },
+          adjustTimer(time){
+              this.$cron.time('load', time * 1000);
           }
         },
         mounted(){
             this.load();
         },
-        cron:{
+        cron: {
             time: 5000,
             method: 'load'
         }
-    }
+    };
 </script>
 <style>
     body{
