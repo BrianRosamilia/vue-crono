@@ -103,7 +103,234 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"V54/":[function(require,module,exports) {
+})({"mfym":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+
+exports.default = {
+    name: 'cleanTime',
+    data: function data() {
+        return { renderedTime: undefined };
+    },
+
+    props: {
+        time: Date,
+        round: { type: Number, default: 5 },
+        dateFn: { type: String, default: 'toLocaleDateString' },
+        dateFnParams: { type: String }
+    },
+    methods: {
+        refreshTime: function refreshTime() {
+            var hoursAgo = (new Date() - this.time) / 1000 / 60 / 60;
+            var time = void 0;
+            var minutes = hoursAgo * 60;
+            var roundedMinutes = Math.ceil(minutes / this.round) * this.round;
+
+            if (roundedMinutes <= 55) {
+                time = roundedMinutes + ' minutes ago';
+            } else if (hoursAgo < 8) {
+                var floorHours = Math.floor(hoursAgo);
+                if (floorHours === 1) {
+                    time = '1 hour ago';
+                } else {
+                    time = floorHours + ' hours ago';
+                }
+            } else {
+                time = this.time[this.dateFn](this.dateFnParams);
+            }
+
+            this.renderedTime = time;
+        }
+    },
+    mounted: function mounted() {
+        this.refreshTime();
+    },
+
+    cron: {
+        time: 60000,
+        method: 'refreshTime'
+    }
+};
+        var $8ef45d = exports.default || module.exports;
+      
+      if (typeof $8ef45d === 'function') {
+        $8ef45d = $8ef45d.options;
+      }
+    
+        /* template */
+        Object.assign($8ef45d, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"vue-crono-time"},[_vm._v("\n    "+_vm._s(_vm.renderedTime)+"\n")])}
+var staticRenderFns = []
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+},{}],"hWNS":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _cleanTime = require('./cleanTime.vue');
+
+var _cleanTime2 = _interopRequireDefault(_cleanTime);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    data: function data() {
+        var fiveMinutesAgo = new Date();
+        fiveMinutesAgo.setMinutes(new Date().getMinutes() - 4);
+
+        var fiveHoursAgo = new Date();
+        fiveHoursAgo.setHours(new Date().getHours() - 5);
+
+        var tenDaysAgo = new Date();
+        tenDaysAgo.setHours(new Date().getHours() - 24 * 10);
+
+        return {
+            currentTime: undefined,
+            cronRunning: true,
+            fiveMinutesAgo: fiveMinutesAgo,
+            fiveHoursAgo: fiveHoursAgo,
+            tenDaysAgo: tenDaysAgo
+        };
+    },
+
+    components: {
+        cleanTime: _cleanTime2.default
+    },
+    methods: {
+        load: function load() {
+            this.currentTime = new Date().toLocaleTimeString();
+        },
+        stopTimer: function stopTimer() {
+            this.$cron.stop('load');
+            this.cronRunning = false;
+        },
+        startTimer: function startTimer() {
+            this.$cron.start('load');
+            this.cronRunning = true;
+        },
+        adjustTimer: function adjustTimer(time) {
+            this.$cron.time('load', time * 1000);
+        }
+    },
+    mounted: function mounted() {
+        this.load();
+    },
+
+    cron: {
+        time: 5000,
+        method: 'load'
+    }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+        var $f19e2f = exports.default || module.exports;
+      
+      if (typeof $f19e2f === 'function') {
+        $f19e2f = $f19e2f.options;
+      }
+    
+        /* template */
+        Object.assign($f19e2f, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('h2',[_vm._v("vue-crono ⏰")]),_vm._v(" "),_c('div',{staticClass:"segment"},[_c('h3',[_vm._v("The current time is "+_vm._s(_vm.currentTime))]),_vm._v(" "),_vm._m(0),_vm._v(" "),(_vm.cronRunning)?_c('button',{on:{"click":_vm.stopTimer}},[_vm._v("Stop Timer")]):_vm._e(),_vm._v(" "),(!_vm.cronRunning)?_c('button',{on:{"click":_vm.startTimer}},[_vm._v("Start Timer")]):_vm._e()]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"segment"},[_c('h3',[_vm._v("Clean Time Display")]),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('div',{staticClass:"time-table"},[_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.fiveMinutesAgo,"round":1}}),_vm._v(" Minutes ago (capped at 55 minutes)\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.fiveHoursAgo,"round":1}}),_vm._v(" Hours ago (capped at 8 hours)\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.tenDaysAgo,"round":1}}),_vm._v(" Days ago (displays actual date in user's locale format)\n           ")],1)])])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('p',[_vm._v("updated every 5 seconds by "),_c('pre',[_vm._v("cron: {  time: 5000, method: 'load'}")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('p',[_vm._v("Show users how long ago something occurred in a concise manner by binding a Date object to "),_c('pre',[_vm._v("<clean-time />")]),_vm._v(" (times are set to update every minute)")])}]
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+},{"./cleanTime.vue":"mfym"}],"N7JA":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _app = require('./app.vue');
+
+var _app2 = _interopRequireDefault(_app);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    components: {
+        app: _app2.default
+    }
+}; //
+//
+//
+//
+//
+        var $a72f1a = exports.default || module.exports;
+      
+      if (typeof $a72f1a === 'function') {
+        $a72f1a = $a72f1a.options;
+      }
+    
+        /* template */
+        Object.assign($a72f1a, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('app')],1)}
+var staticRenderFns = []
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+},{"./app.vue":"hWNS"}],"V54/":[function(require,module,exports) {
 var global = arguments[3];
 'use strict';
 
@@ -7385,7 +7612,7 @@ if (inBrowser) {
 
 exports.default = Vue;
 },{}],"Focm":[function(require,module,exports) {
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -7437,7 +7664,7 @@ var cron = function cron(Vue) {
                         }
                     });
                     if (!locatedCronMethod) {
-                        throw new Error('Cron method \'' + method + '\' does not exist and cannot be stopped.');
+                        throw new Error("Cron method '" + method + "' does not exist and cannot be stopped.");
                     }
                 },
                 start: function start(method) {
@@ -7449,22 +7676,25 @@ var cron = function cron(Vue) {
                         }
                     });
                     if (!locatedCronMethod) {
-                        throw new Error('Cron method \'' + method + '\' does not exist and cannot be started.');
+                        throw new Error("Cron method '" + method + "' does not exist and cannot be started.");
                     }
                 },
                 time: function time(method, _time) {
-                    var elapsed = +new Date() - _this2._cron[method].lastInvocation;
+                    var currentDate = +new Date();
+
+                    if (!_this2._cron[method].timerRunning) {
+                        _this2._cron[method].lastInvocation = currentDate;
+                    }
+                    var elapsed = currentDate - _this2._cron[method].lastInvocation;
 
                     _this2.$cron.stop(method);
 
-                    if (elapsed >= _time) {
-                        _this2.$options.methods[method]();
+                    if (elapsed > _time) {
+                        _this2.$options.methods[method].call(_this2);
                         createTimer.call(_this2, { method: method, time: _time });
                     } else {
-                        console.log('Time adjusted up, now calling method in ', _time - elapsed);
                         setTimeout(function () {
-                            console.log('method called');
-                            _this2.$options.methods[method]();
+                            _this2.$options.methods[method].call(_this2);
                             createTimer.call(_this2, { method: method, time: _time });
                         }, _time - elapsed);
                     }
@@ -7482,121 +7712,12 @@ var cron = function cron(Vue) {
 };
 
 exports.default = cron;
-},{}],"hWNS":[function(require,module,exports) {
+},{}],"Zdfz":[function(require,module,exports) {
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _bootstrap = require('./bootstrap.vue');
 
-exports.default = {
-    data: function data() {
-        return {
-            currentTime: undefined,
-            cronRunning: true
-        };
-    },
-
-    methods: {
-        load: function load() {
-            this.currentTime = new Date().toLocaleTimeString();
-        },
-        stopTimer: function stopTimer() {
-            this.$cron.stop('load');
-            this.cronRunning = false;
-        },
-        startTimer: function startTimer() {
-            this.$cron.start('load');
-            this.cronRunning = true;
-        },
-        adjustTimer: function adjustTimer(time) {
-            this.$cron.time('load', time * 1000);
-        }
-    },
-    mounted: function mounted() {
-        this.load();
-    },
-
-    cron: {
-        time: 5000,
-        method: 'load'
-    }
-};
-        var $f19e2f = exports.default || module.exports;
-      
-      if (typeof $f19e2f === 'function') {
-        $f19e2f = $f19e2f.options;
-      }
-    
-        /* template */
-        Object.assign($f19e2f, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('h2',[_vm._v("vue-crono ⏰")]),_vm._v(" "),_c('h3',[_vm._v("The current time is "+_vm._s(_vm.currentTime))]),_vm._v(" "),_c('p',[_vm._v("( updated every 5 seconds by cron )")]),_vm._v(" "),(_vm.cronRunning)?_c('button',{on:{"click":_vm.stopTimer}},[_vm._v("Stop Timer")]):_vm._e(),_vm._v(" "),(!_vm.cronRunning)?_c('button',{on:{"click":_vm.startTimer}},[_vm._v("Start Timer")]):_vm._e(),_vm._v(" "),_c('button',{on:{"click":function($event){_vm.adjustTimer(10)}}},[_vm._v("Change interval to 10 second updates")]),_vm._v(" "),_c('button',{on:{"click":function($event){_vm.adjustTimer(5)}}},[_vm._v("Change interval to 5 second updates")])])}
-var staticRenderFns = []
-
-          return {
-            render: render,
-            staticRenderFns: staticRenderFns,
-            _compiled: true,
-            _scopeId: null,
-            functional: undefined
-          };
-        })());
-      
-},{}],"N7JA":[function(require,module,exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _app = require('./app.vue');
-
-var _app2 = _interopRequireDefault(_app);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        app: _app2.default
-    }
-}; //
-//
-//
-//
-//
-        var $a72f1a = exports.default || module.exports;
-      
-      if (typeof $a72f1a === 'function') {
-        $a72f1a = $a72f1a.options;
-      }
-    
-        /* template */
-        Object.assign($a72f1a, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('app')],1)}
-var staticRenderFns = []
-
-          return {
-            render: render,
-            staticRenderFns: staticRenderFns,
-            _compiled: true,
-            _scopeId: null,
-            functional: undefined
-          };
-        })());
-      
-},{"./app.vue":"hWNS"}],"Zdfz":[function(require,module,exports) {
-'use strict';
+var _bootstrap2 = _interopRequireDefault(_bootstrap);
 
 var _Vue = require('Vue');
 
@@ -7606,14 +7727,9 @@ var _index = require('./index.js');
 
 var _index2 = _interopRequireDefault(_index);
 
-var _bootstrap = require('./bootstrap.vue');
-
-var _bootstrap2 = _interopRequireDefault(_bootstrap);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _Vue2.default.use(_index2.default);
-
 
 window.onload = function () {
     new _Vue2.default({
@@ -7624,5 +7740,5 @@ window.onload = function () {
         }
     });
 };
-},{"Vue":"V54/","./index.js":"Focm","./bootstrap.vue":"N7JA"}]},{},["Zdfz"], null)
-//# sourceMappingURL=example.1a5399c8.map
+},{"./bootstrap.vue":"N7JA","Vue":"V54/","./index.js":"Focm"}]},{},["Zdfz"], null)
+//# sourceMappingURL=example.d353ab1c.map
