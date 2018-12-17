@@ -110,3 +110,15 @@ You can adjust the time of existing jobs, even while they're running, using
 `this.$cron.time(methodName, time)`  
 
 This method is intelligent enough to know if the timer should have been invoked when decreasing the time of a job as well as extending the time to the next job run if you're increasing the timer.  Adjusting the time on a stopped job will behave as though you started it from scratch. (See unit tests if curious about this behavior)
+
+## clean-time Component
+
+`<clean-time></clean-time>`
+
+Provides human readable, realtime updated, timestamp for past events.  Supports localization and custom template strings.
+
+`clean-time` takes a single prop `time`.
+
+[Example here](https://brianrosamilia.github.io/vue-crono)
+
+[Example Source here](https://github.com/BrianRosamilia/vue-crono/blob/master/src/app.vue#L14-L48)
