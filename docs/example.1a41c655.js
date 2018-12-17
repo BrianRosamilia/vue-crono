@@ -1201,8 +1201,7 @@ var _default = {
             minutes: '${time} minutes ago',
             hour: '${time} hour ago',
             hours: '${time} hours ago',
-            day: '${time} day ago',
-            days: '${time} days ago'
+            day: '${time} day ago'
           }
         };
       }
@@ -1215,7 +1214,7 @@ var _default = {
       var roundedMinutes = Math.ceil(minutesAgo / this.round) * this.round;
       var time;
 
-      if (roundedMinutes === 1) {
+      if (roundedMinutes == 0 || roundedMinutes === 1) {
         time = template(this.localeMap[this.locale].minute, {
           time: 1
         });
@@ -1395,7 +1394,7 @@ exports.default = _default;
     
         /* template */
         Object.assign($f19e2f, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('h2',[_vm._v("vue-crono ⏰")]),_vm._v(" "),_c('div',{staticClass:"segment"},[_c('h3',[_vm._v("The current time is "+_vm._s(_vm.currentTime))]),_vm._v(" "),_vm._m(0),_vm._v(" "),(_vm.cronRunning)?_c('button',{on:{"click":_vm.stopTimer}},[_vm._v("Stop Timer")]):_vm._e(),_vm._v(" "),(!_vm.cronRunning)?_c('button',{on:{"click":_vm.startTimer}},[_vm._v("Start Timer")]):_vm._e()]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"segment"},[_c('h3',[_vm._v("Clean Time Display")]),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('div',{staticClass:"time-table"},[_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.fiveMinutesAgo,"round":1}}),_vm._v(" Minutes ago (capped at 55 minutes)\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.fiveHoursAgo}}),_vm._v(" Hours ago (capped at 8 hours)\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.yesterday}}),_vm._v(" Approximately one Day ago\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.tenDaysAgo}}),_vm._v(" Days ago (displays actual date in user's locale format)\n           ")],1),_vm._v(" "),_c('p',[_vm._v("You can also change the display strings")]),_vm._v(" "),_c('div',{staticClass:"time-table"},[_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.minuteAgo,"round":1,"locale-map":{ en: {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('h2',[_vm._v("vue-crono ⏰")]),_vm._v(" "),_c('div',{staticClass:"segment"},[_c('h3',[_vm._v("The current time is "+_vm._s(_vm.currentTime))]),_vm._v(" "),_vm._m(0),_vm._v(" "),(_vm.cronRunning)?_c('button',{on:{"click":_vm.stopTimer}},[_vm._v("Stop Timer")]):_vm._e(),_vm._v(" "),(!_vm.cronRunning)?_c('button',{on:{"click":_vm.startTimer}},[_vm._v("Start Timer")]):_vm._e()]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"segment"},[_c('h3',[_vm._v("Clean Time Display")]),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('div',{staticClass:"time-table"},[_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.fiveMinutesAgo,"round":1}}),_vm._v(" Minutes ago (capped at 55 minutes)\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.fiveHoursAgo}}),_vm._v(" Hours ago (capped at 8 hours)\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.yesterday}}),_vm._v(" Approximately one Day ago\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.tenDaysAgo}}),_vm._v(" Days ago (displays actual date in user's locale format)\n            ")],1),_vm._v(" "),_c('p',[_vm._v("You can also change the display strings")]),_vm._v(" "),_c('div',{staticClass:"time-table"},[_vm._v("\n            🕒"),_c('clean-time',{ref:"smallestTime",attrs:{"time":_vm.minuteAgo,"round":1,"locale-map":{ en: {
                       minute: 'just now',
                       minutes: '${time} minutes ago',
                       hour: '${time} hour ago',
@@ -9600,4 +9599,4 @@ window.onload = function () {
   });
 };
 },{"./bootstrap.vue":"N7JA","Vue":"JjiN","./index.js":"Focm"}]},{},["Zdfz"], null)
-//# sourceMappingURL=example.f1099dbb.map
+//# sourceMappingURL=example.1a41c655.map

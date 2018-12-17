@@ -25,8 +25,7 @@
                           minutes: '${time} minutes ago',
                           hour: '${time} hour ago',
                           hours: '${time} hours ago',
-                          day: '${time} day ago',
-                          days: '${time} days ago'
+                          day: '${time} day ago'
                       }
                   };
               }
@@ -40,7 +39,7 @@
 
                 let time;
 
-                if(roundedMinutes === 1){
+                if(roundedMinutes == 0 || roundedMinutes === 1){
                     time = template(this.localeMap[this.locale].minute, { time: 1 });
                 }
                 else if (roundedMinutes <= 55){

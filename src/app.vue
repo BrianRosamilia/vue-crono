@@ -22,13 +22,13 @@
                 🕒<clean-time v-bind:time="yesterday"></clean-time> Approximately one Day ago
                 <br/>
                 🕒<clean-time v-bind:time="tenDaysAgo"></clean-time> Days ago (displays actual date in user's locale format)
-               <!-- <br/>
+                <!-- <br/>
                 🕒<clean-time v-bind:time="tenDaysAgo" v-bind:round="1" date-fn="toLocaleString" /> Days also support Date format functions
                 <br/>-->
             </div>
             <p>You can also change the display strings</p>
             <div class="time-table">
-                🕒<clean-time v-bind:time="minuteAgo" v-bind:round="1" v-bind:locale-map="{ en: {
+                🕒<clean-time v-bind:time="minuteAgo" v-bind:round="1" ref="smallestTime" v-bind:locale-map="{ en: {
                           minute: 'just now',
                           minutes: '${time} minutes ago',
                           hour: '${time} hour ago',
@@ -111,16 +111,20 @@
         font-family:Helvetica
     }
 
+    h2,
+    h3{
+        color:rgba(0, 0, 0, 0.85);
+    }
+
     h3{
         font-family:"Times New Roman";
+        font-size:5rem;
+        margin-top: .5em;
+        margin-bottom: .5em;
     }
 
     div{
         text-align:center;
-    }
-
-    h3{
-        font-size:5rem;
     }
 
     .segment {

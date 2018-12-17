@@ -51,7 +51,7 @@ Other use cases:
  * Refreshing data from a service periodically
  * Warning a user about a time sensitive action
 
-Sample:
+Example:
 ```javascript
 export default{
     data(){
@@ -82,6 +82,16 @@ cron:[{
     method: 'stopTimer'
 }]
 ```
+
+`<clean-time></clean-time>` Component
+
+Provides human readable, realtime updated, timestamp for past events.  Supports localization and custom template strings.
+
+`clean-time` takes a single prop `time`.
+
+[Example here](https://brianrosamilia.github.io/vue-crono)
+
+[Example Source here](https://github.com/BrianRosamilia/vue-crono/blob/master/src/app.vue#L14-L48)
 
 ## API
 
