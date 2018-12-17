@@ -7,8 +7,8 @@
     import app from './app.vue';
 
     export default{
-        components:{
+        components: {
             app
         }
-    }
+    };
 </script>

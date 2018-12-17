@@ -21,9 +21,9 @@ import crono from 'vue-crono';
 Vue.use(crono);
 ```
 
-**or** include from [https://unpkg.com/vue-crono@1.0.5/dist/index.js](https://unpkg.com/vue-crono@1.0.5/dist/index.js)
+**or** include from [https://unpkg.com/vue-crono@1.1.0/dist/index.js](https://unpkg.com/vue-crono@1.1.0/dist/index.js)
 
-`<script src="https://unpkg.com/vue-crono@1.0.5/dist/index.js"></script>` which will put the plugin on `window.crono`
+`<script src="https://unpkg.com/vue-crono@1.1.0/dist/index.js"></script>` which will put the plugin on `window.crono`
 
 **or** npm install the package and browse to `node_modules/vue-cron/dist/index.js` and copy the file into your application
 
@@ -51,7 +51,7 @@ Other use cases:
  * Refreshing data from a service periodically
  * Warning a user about a time sensitive action
 
-Sample:
+Example:
 ```javascript
 export default{
     data(){
@@ -82,6 +82,16 @@ cron:[{
     method: 'stopTimer'
 }]
 ```
+
+`<clean-time></clean-time>` Component
+
+Provides human readable, realtime updated, timestamp for past events.  Supports localization and custom template strings.
+
+`clean-time` takes a single prop `time`.
+
+[Example here](https://brianrosamilia.github.io/vue-crono)
+
+[Example Source here](https://github.com/BrianRosamilia/vue-crono/blob/master/src/app.vue#L14-L48)
 
 ## API
 
