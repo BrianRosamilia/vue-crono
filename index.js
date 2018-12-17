@@ -1,8 +1,16 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.cleanTime = undefined;
+
+var _cleanTime = require('./cleanTime.vue');
+
+var _cleanTime2 = _interopRequireDefault(_cleanTime);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var mapOrSingle = function mapOrSingle(obj, fn) {
     if (obj.constructor !== Array) {
         return fn(obj);
@@ -98,3 +106,4 @@ var cron = function cron(Vue) {
 };
 
 exports.default = cron;
+exports.cleanTime = _cleanTime2.default;

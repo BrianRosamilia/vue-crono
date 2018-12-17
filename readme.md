@@ -21,9 +21,9 @@ import crono from 'vue-crono';
 Vue.use(crono);
 ```
 
-**or** include from [https://unpkg.com/vue-crono@1.1.0/dist/index.js](https://unpkg.com/vue-crono@1.1.0/dist/index.js)
+**or** include from [https://unpkg.com/vue-crono@1.1.1/dist/index.js](https://unpkg.com/vue-crono@1.1.1/dist/index.js)
 
-`<script src="https://unpkg.com/vue-crono@1.1.0/dist/index.js"></script>` which will put the plugin on `window.crono`
+`<script src="https://unpkg.com/vue-crono@1.1.1/dist/index.js"></script>` which will put the plugin on `window.crono`
 
 **or** npm install the package and browse to `node_modules/vue-cron/dist/index.js` and copy the file into your application
 
@@ -114,6 +114,8 @@ This method is intelligent enough to know if the timer should have been invoked 
 ## clean-time Component
 
 `<clean-time></clean-time>`
+
+`import { cleanTime } from 'vue-crono'`
 
 Provides human readable, realtime updated, timestamp for past events.  Supports localization and custom template strings.
 
