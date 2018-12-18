@@ -21,9 +21,9 @@ import crono from 'vue-crono';
 Vue.use(crono);
 ```
 
-**or** include from [https://unpkg.com/vue-crono@1.1.1/dist/index.js](https://unpkg.com/vue-crono@1.1.1/dist/index.js)
+**or** include from [https://unpkg.com/vue-crono@1.1.2/dist/index.js](https://unpkg.com/vue-crono@1.1.2/dist/index.js)
 
-`<script src="https://unpkg.com/vue-crono@1.1.1/dist/index.js"></script>` which will put the plugin on `window.crono`
+`<script src="https://unpkg.com/vue-crono@1.1.2/dist/index.js"></script>` which will put the plugin on `window.crono`
 
 **or** npm install the package and browse to `node_modules/vue-cron/dist/index.js` and copy the file into your application
 
@@ -35,11 +35,14 @@ Schedule Vue methods to run on interval using the `cron` property on your Vue co
 
 ```javascript
 {
-    // Number in miliseconds
-    time: Number`,
+    // Number in milliseconds
+    time: Number,
 
     // Vue component method name
-    method: String
+    method: String,
+    
+    // Automatic Start (true by default)
+    autoStart: true
 }
 ```
 
@@ -83,16 +86,6 @@ cron:[{
 }]
 ```
 
-`<clean-time></clean-time>` Component
-
-Provides human readable, realtime updated, timestamp for past events.  Supports localization and custom template strings.
-
-`clean-time` takes a single prop `time`.
-
-[Example here](https://brianrosamilia.github.io/vue-crono)
-
-[Example Source here](https://github.com/BrianRosamilia/vue-crono/blob/master/src/app.vue#L14-L48)
-
 ## API
 
 If you create jobs via the `cron` option, you can manage them on the component instance using
@@ -117,7 +110,7 @@ This method is intelligent enough to know if the timer should have been invoked 
 
 `import { cleanTime } from 'vue-crono'`
 
-Provides human readable, realtime updated, timestamp for past events.  Supports localization and custom template strings.
+A Vue component that provides human readable, realtime updated, timestamp for past events.  Supports localization and custom template strings.
 
 `clean-time` takes a single prop `time`.
 

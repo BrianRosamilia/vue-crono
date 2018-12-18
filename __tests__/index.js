@@ -5,6 +5,7 @@ import crono from '../src/index.js';
 Vue.use(crono);
 import app from '../src/app.vue';
 import cronMultiple from '../src/cronMultiple.vue';
+import autoStart from '../src/autoStart.vue';
 
 const Cmp = Vue.extend(app);
 const spyLoad = jest.spyOn(Cmp.options.methods, 'load');
@@ -77,6 +78,15 @@ describe('Cron', () => {
         jest.advanceTimersByTime(6000);
 
         expect(spyLoad.mock.calls.length).toBe(2);
+
+        mounted.$destroy();
+    });
+
+    test('Stop a job multiple times does not introduce an exception', () => {
+        const mounted = new Cmp();
+        mounted.$mount();
+        mounted.stopTimer();
+        mounted.stopTimer();
 
         mounted.$destroy();
     });
@@ -196,6 +206,23 @@ describe('Cron', () => {
         expect(spyLoad.mock.calls.length).toBe(4);
 
         mounted.$destroy();
+    });
+
+    test('Autostart test suite', () => {
+        const Auto = Vue.extend(autoStart);
+        const spyAutoStart = jest.spyOn(Auto.options.methods, 'load');
+        const autoCmp = new Auto();
+        autoCmp.$mount();
+        autoCmp.stopTimer();
+        autoCmp.stopTimer();
+
+        expect(spyAutoStart.mock.calls.length).toBe(0);
+
+        autoCmp.startTimer();
+
+        adjustGlobalDate(10000);
+
+        expect(spyAutoStart.mock.calls.length).toBe(2);
     });
 });
 

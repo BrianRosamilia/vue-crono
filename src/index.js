@@ -15,15 +15,20 @@ const createTimer = function(cron){
 
     if(this._cron[method] && this._cron[method].timerRunning) return;
 
-    this._cron[method] = {
-        timer: setInterval(() => {
-            this.$options.methods[method].call(this);
-            this._cron[method].lastInvocation = + new Date();
-        }, cron.time),
-        timerRunning: true,
-        time: cron.time,
-        lastInvocation: + new Date()
-    };
+    if(cron.autoStart === false){
+        this._cron[method] = { timerRunning: false };
+    }
+    else{
+        this._cron[method] = {
+            timer: setInterval(() => {
+                this.$options.methods[method].call(this);
+                this._cron[method].lastInvocation = + new Date();
+            }, cron.time),
+            timerRunning: true,
+            time: cron.time,
+            lastInvocation: + new Date()
+        };
+    }
 };
 
 const cron = Vue => {
@@ -39,6 +44,9 @@ const cron = Vue => {
                     mapOrSingle(this.$options.cron, cron => {
                         if (cron.method === method){
                             locatedCronMethod = true;
+
+                            if(!this._cron[cron.method].timerRunning) return;
+
                             clearInterval(this._cron[cron.method].timer);
                             this._cron[cron.method].timerRunning = false;
                         }
@@ -52,7 +60,7 @@ const cron = Vue => {
                     mapOrSingle(this.$options.cron, cron => {
                         if (cron.method === method){
                             locatedCronMethod = true;
-                            createTimer.call(this, cron);
+                            createTimer.call(this, { ...cron, autoStart: true });
                         }
                     });
                     if (!locatedCronMethod){
