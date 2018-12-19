@@ -50,7 +50,7 @@
     </div>
 </template>
 <script>
-    import cleanTime from '../cleanTime.vue';
+    import cleanTime from './cleanTime.vue';
 
     export default{
         data(){

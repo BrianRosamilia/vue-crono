@@ -1,7 +1,7 @@
 jest.mock('Vue', () => { return require('vue') }, { virtual: true });
 
 import Vue from 'Vue';
-import crono from '../src/index.js';
+import crono from '../index.js';
 Vue.use(crono);
 import app from '../src/app.vue';
 import cronMultiple from '../src/cronMultiple.vue';
