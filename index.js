@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.cleanTime = undefined;
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _cleanTime = require('./cleanTime.vue');
 
 var _cleanTime2 = _interopRequireDefault(_cleanTime);
@@ -27,15 +29,19 @@ var createTimer = function createTimer(cron) {
 
     if (this._cron[method] && this._cron[method].timerRunning) return;
 
-    this._cron[method] = {
-        timer: setInterval(function () {
-            _this.$options.methods[method].call(_this);
-            _this._cron[method].lastInvocation = +new Date();
-        }, cron.time),
-        timerRunning: true,
-        time: cron.time,
-        lastInvocation: +new Date()
-    };
+    if (cron.autoStart === false) {
+        this._cron[method] = { timerRunning: false };
+    } else {
+        this._cron[method] = {
+            timer: setInterval(function () {
+                _this.$options.methods[method].call(_this);
+                _this._cron[method].lastInvocation = +new Date();
+            }, cron.time),
+            timerRunning: true,
+            time: cron.time,
+            lastInvocation: +new Date()
+        };
+    }
 };
 
 var cron = function cron(Vue) {
@@ -53,6 +59,9 @@ var cron = function cron(Vue) {
                     mapOrSingle(_this2.$options.cron, function (cron) {
                         if (cron.method === method) {
                             locatedCronMethod = true;
+
+                            if (!_this2._cron[cron.method].timerRunning) return;
+
                             clearInterval(_this2._cron[cron.method].timer);
                             _this2._cron[cron.method].timerRunning = false;
                         }
@@ -66,7 +75,7 @@ var cron = function cron(Vue) {
                     mapOrSingle(_this2.$options.cron, function (cron) {
                         if (cron.method === method) {
                             locatedCronMethod = true;
-                            createTimer.call(_this2, cron);
+                            createTimer.call(_this2, _extends({}, cron, { autoStart: true }));
                         }
                     });
                     if (!locatedCronMethod) {

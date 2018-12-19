@@ -1152,7 +1152,7 @@ module.exports = function (template, context/*, options*/) {
 	return resolve(compile(template), context, arguments[2]);
 };
 
-},{"./compile":"ND+n","./resolve-to-string":"7eKe"}],"mfym":[function(require,module,exports) {
+},{"./compile":"ND+n","./resolve-to-string":"7eKe"}],"jBef":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1254,14 +1254,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $8ef45d = exports.default || module.exports;
+        var $6ce9f2 = exports.default || module.exports;
       
-      if (typeof $8ef45d === 'function') {
-        $8ef45d = $8ef45d.options;
+      if (typeof $6ce9f2 === 'function') {
+        $6ce9f2 = $6ce9f2.options;
       }
     
         /* template */
-        Object.assign($8ef45d, (function () {
+        Object.assign($6ce9f2, (function () {
           var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"vue-crono-time"},[_vm._v("\n    "+_vm._s(_vm.renderedTime)+"\n")])}
 var staticRenderFns = []
 
@@ -1282,7 +1282,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _cleanTime = _interopRequireDefault(require("./cleanTime.vue"));
+var _cleanTime = _interopRequireDefault(require("../cleanTime.vue"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1382,8 +1382,7 @@ var _default = {
   },
   cron: {
     time: 5000,
-    method: 'load',
-    autoStart: false
+    method: 'load'
   }
 };
 exports.default = _default;
@@ -1421,7 +1420,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
           };
         })());
       
-},{"./cleanTime.vue":"mfym"}],"N7JA":[function(require,module,exports) {
+},{"../cleanTime.vue":"jBef"}],"N7JA":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9463,25 +9462,37 @@ if (inBrowser) {
 
 var _default = Vue;
 exports.default = _default;
-},{}],"Focm":[function(require,module,exports) {
-"use strict";
+},{}],"S3PC":[function(require,module,exports) {
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "cleanTime", {
-  enumerable: true,
-  get: function () {
-    return _cleanTime.default;
+exports.cleanTime = undefined;
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
   }
-});
-exports.default = void 0;
 
-var _cleanTime = _interopRequireDefault(require("./cleanTime.vue"));
+  return target;
+};
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _cleanTime = require('./cleanTime.vue');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _cleanTime2 = _interopRequireDefault(_cleanTime);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
 
 var mapOrSingle = function mapOrSingle(obj, fn) {
   if (obj.constructor !== Array) {
@@ -9597,16 +9608,16 @@ var cron = function cron(Vue) {
   });
 };
 
-var _default = cron;
-exports.default = _default;
-},{"./cleanTime.vue":"mfym"}],"Zdfz":[function(require,module,exports) {
+exports.default = cron;
+exports.cleanTime = _cleanTime2.default;
+},{"./cleanTime.vue":"jBef"}],"Zdfz":[function(require,module,exports) {
 "use strict";
 
 var _bootstrap = _interopRequireDefault(require("./bootstrap.vue"));
 
 var _Vue = _interopRequireDefault(require("Vue"));
 
-var _index = _interopRequireDefault(require("./index.js"));
+var _index = _interopRequireDefault(require("../index.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9621,5 +9632,5 @@ window.onload = function () {
     }
   });
 };
-},{"./bootstrap.vue":"N7JA","Vue":"JjiN","./index.js":"Focm"}]},{},["Zdfz"], null)
-//# sourceMappingURL=example.e52229e1.map
+},{"./bootstrap.vue":"N7JA","Vue":"JjiN","../index.js":"S3PC"}]},{},["Zdfz"], null)
+//# sourceMappingURL=example.f4125e78.map
