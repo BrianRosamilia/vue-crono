@@ -108,11 +108,11 @@ This method is intelligent enough to know if the timer should have been invoked 
 
 `<clean-time></clean-time>`
 
-`import { cleanTime } from 'vue-crono'`
+`import cleanTime from 'vue-crono/cleanTime'`
 
 A Vue component that provides human readable, realtime updated, timestamp for past events.  Supports localization and custom template strings.
 
-`clean-time` takes a single prop `time` to function and offers multiple options.
+`clean-time` requires a single prop `time` (a `Date` object) and offers some customization props.
 
 [Example here](https://brianrosamilia.github.io/vue-crono)
 

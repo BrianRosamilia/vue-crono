@@ -261,4 +261,19 @@ describe('Clean-time', () => {
 
         expect(childCmp.renderedTime).toBe(expectedDate);
     });
+
+    test.only('Check time when crossing over an hour', () => {
+        const mounted = new Cmp();
+        mounted.$mount();
+        const childCmp = mounted.$refs.smallestTime;
+
+        childCmp.time.setMinutes(childCmp.time.getMinutes() - 57);
+        childCmp.refreshTime();
+
+        for(let x = 0; x < 400; x++){
+            childCmp.time.setSeconds(childCmp.time.getSeconds() - 1);
+            childCmp.refreshTime();
+            expect(childCmp.renderedTime).not.toBe('0 hours ago');
+        }
+    });
 });

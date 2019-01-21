@@ -47,7 +47,7 @@
                 }
                 else if (hoursAgo < 8){
                     const floorHours = Math.floor(hoursAgo);
-                    if (floorHours === 1){
+                    if (floorHours === 0 || floorHours === 1){
                         time = template(this.localeMap[this.locale].hour, { time: floorHours });
                     }
                     else{

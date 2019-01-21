@@ -1,5 +1,3 @@
-import cleanTime from './src/cleanTime.vue';
-
 const mapOrSingle = function(obj, fn){
     if(obj.constructor !== Array){
         return fn(obj);
@@ -101,4 +99,3 @@ const cron = Vue => {
 };
 
 export default cron;
-export {cleanTime};

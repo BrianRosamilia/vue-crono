@@ -1152,7 +1152,7 @@ module.exports = function (template, context/*, options*/) {
 	return resolve(compile(template), context, arguments[2]);
 };
 
-},{"./compile":"ND+n","./resolve-to-string":"7eKe"}],"mfym":[function(require,module,exports) {
+},{"./compile":"ND+n","./resolve-to-string":"7eKe"}],"jBef":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1225,7 +1225,7 @@ var _default = {
       } else if (hoursAgo < 8) {
         var floorHours = Math.floor(hoursAgo);
 
-        if (floorHours === 1) {
+        if (floorHours === 0 || floorHours === 1) {
           time = template(this.localeMap[this.locale].hour, {
             time: floorHours
           });
@@ -1254,14 +1254,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $8ef45d = exports.default || module.exports;
+        var $6ce9f2 = exports.default || module.exports;
       
-      if (typeof $8ef45d === 'function') {
-        $8ef45d = $8ef45d.options;
+      if (typeof $6ce9f2 === 'function') {
+        $6ce9f2 = $6ce9f2.options;
       }
     
         /* template */
-        Object.assign($8ef45d, (function () {
+        Object.assign($6ce9f2, (function () {
           var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"vue-crono-time"},[_vm._v("\n    "+_vm._s(_vm.renderedTime)+"\n")])}
 var staticRenderFns = []
 
@@ -1282,13 +1282,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _cleanTime = _interopRequireDefault(require("./cleanTime.vue"));
+var _cleanTime = _interopRequireDefault(require("../cleanTime.vue"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
 //
 //
 //
@@ -1394,7 +1391,7 @@ exports.default = _default;
     
         /* template */
         Object.assign($f19e2f, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('h2',[_vm._v("vue-crono ⏰")]),_vm._v(" "),_c('div',{staticClass:"segment"},[_c('h3',[_vm._v("The current time is "+_vm._s(_vm.currentTime))]),_vm._v(" "),_vm._m(0),_vm._v(" "),(_vm.cronRunning)?_c('button',{on:{"click":_vm.stopTimer}},[_vm._v("Stop Timer")]):_vm._e(),_vm._v(" "),(!_vm.cronRunning)?_c('button',{on:{"click":_vm.startTimer}},[_vm._v("Start Timer")]):_vm._e()]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"segment"},[_c('h3',[_vm._v("Clean Time Display")]),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('div',{staticClass:"time-table"},[_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.fiveMinutesAgo,"round":1}}),_vm._v(" Minutes ago (capped at 55 minutes)\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.fiveHoursAgo}}),_vm._v(" Hours ago (capped at 8 hours)\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.yesterday}}),_vm._v(" Approximately one Day ago\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.tenDaysAgo}}),_vm._v(" Days ago (displays actual date in user's locale format)\n            ")],1),_vm._v(" "),_c('p',[_vm._v("You can also change the display strings")]),_vm._v(" "),_c('div',{staticClass:"time-table"},[_vm._v("\n            🕒"),_c('clean-time',{ref:"smallestTime",attrs:{"time":_vm.minuteAgo,"round":1,"locale-map":{ en: {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('h2',[_vm._v("vue-crono ⏰")]),_vm._v(" "),_c('div',{staticClass:"segment"},[_c('h3',[_vm._v("The current time is "+_vm._s(_vm.currentTime))]),_vm._v(" "),_vm._m(0),_vm._v(" "),(_vm.cronRunning)?_c('button',{on:{"click":_vm.stopTimer}},[_vm._v("Stop Timer")]):_vm._e(),_vm._v(" "),(!_vm.cronRunning)?_c('button',{on:{"click":_vm.startTimer}},[_vm._v("Start Timer")]):_vm._e()]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"segment"},[_c('h3',[_vm._v("Clean Time Display")]),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('div',{staticClass:"time-table"},[_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.fiveMinutesAgo,"round":1}}),_vm._v(" Minutes ago (capped at 55 minutes)\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.fiveHoursAgo}}),_vm._v(" Hours ago (capped at 8 hours)\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.yesterday}}),_vm._v(" Approximately one Day ago\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.tenDaysAgo}}),_vm._v(" Days ago (displays actual date in user's locale format)\n        ")],1),_vm._v(" "),_c('p',[_vm._v("You can also change the display strings")]),_vm._v(" "),_c('div',{staticClass:"time-table"},[_vm._v("\n            🕒"),_c('clean-time',{ref:"smallestTime",attrs:{"time":_vm.minuteAgo,"round":1,"locale-map":{ en: {
                       minute: 'just now',
                       minutes: '${time} minutes ago',
                       hour: '${time} hour ago',
@@ -1420,7 +1417,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
           };
         })());
       
-},{"./cleanTime.vue":"mfym"}],"N7JA":[function(require,module,exports) {
+},{"../cleanTime.vue":"jBef"}],"N7JA":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9468,19 +9465,9 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "cleanTime", {
-  enumerable: true,
-  get: function () {
-    return _cleanTime.default;
-  }
-});
 exports.default = void 0;
 
-var _cleanTime = _interopRequireDefault(require("./src/cleanTime.vue"));
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapOrSingle = function mapOrSingle(obj, fn) {
   if (obj.constructor !== Array) {
@@ -9598,7 +9585,7 @@ var cron = function cron(Vue) {
 
 var _default = cron;
 exports.default = _default;
-},{"./src/cleanTime.vue":"mfym"}],"Zdfz":[function(require,module,exports) {
+},{}],"Zdfz":[function(require,module,exports) {
 "use strict";
 
 var _bootstrap = _interopRequireDefault(require("./bootstrap.vue"));
@@ -9621,4 +9608,4 @@ window.onload = function () {
   });
 };
 },{"./bootstrap.vue":"N7JA","Vue":"JjiN","../index.js":"S3PC"}]},{},["Zdfz"], null)
-//# sourceMappingURL=example.b1424b53.map
+//# sourceMappingURL=example.83050484.map

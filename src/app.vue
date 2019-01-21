@@ -22,9 +22,6 @@
                 🕒<clean-time v-bind:time="yesterday"></clean-time> Approximately one Day ago
                 <br/>
                 🕒<clean-time v-bind:time="tenDaysAgo"></clean-time> Days ago (displays actual date in user's locale format)
-                <!-- <br/>
-                🕒<clean-time v-bind:time="tenDaysAgo" v-bind:round="1" date-fn="toLocaleString" /> Days also support Date format functions
-                <br/>-->
             </div>
             <p>You can also change the display strings</p>
             <div class="time-table">
@@ -50,7 +47,7 @@
     </div>
 </template>
 <script>
-    import cleanTime from './cleanTime.vue';
+    import cleanTime from '../cleanTime.vue';
 
     export default{
         data(){
