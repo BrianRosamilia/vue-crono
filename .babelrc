@@ -1,12 +1,13 @@
 {
   "plugins": [
     "transform-object-rest-spread",
-    ["transform-inline-environment-variables"]
+    "transform-inline-environment-variables",
+    "transform-es2015-modules-commonjs"
   ],
   "presets": [
     ["env", {
       "targets": {
-        "chrome": 46
+        "chrome": 52
       }
     }]
   ]

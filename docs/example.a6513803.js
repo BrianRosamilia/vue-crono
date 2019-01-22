@@ -1158,7 +1158,6 @@ module.exports = function (template, context/*, options*/) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
 
 //
 //
@@ -1167,7 +1166,7 @@ exports.default = void 0;
 //
 var template = require('es6-template-strings');
 
-var _default = {
+exports.default = {
   name: 'cleanTime',
   data: function data() {
     return {
@@ -1253,7 +1252,6 @@ var _default = {
     method: 'refreshTime'
   }
 };
-exports.default = _default;
         var $6ce9f2 = exports.default || module.exports;
       
       if (typeof $6ce9f2 === 'function') {
@@ -1280,61 +1278,14 @@ var staticRenderFns = []
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
 
-var _cleanTime = _interopRequireDefault(require("../cleanTime.vue"));
+var _cleanTime = require("../cleanTime.vue");
+
+var _cleanTime2 = _interopRequireDefault(_cleanTime);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = {
+exports.default = {
   data: function data() {
     var minuteAgo = new Date();
     var fiveMinutesAgo = new Date();
@@ -1356,7 +1307,7 @@ var _default = {
     };
   },
   components: {
-    cleanTime: _cleanTime.default
+    cleanTime: _cleanTime2.default
   },
   methods: {
     load: function load() {
@@ -1381,8 +1332,54 @@ var _default = {
     time: 5000,
     method: 'load'
   }
-};
-exports.default = _default;
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
         var $f19e2f = exports.default || module.exports;
       
       if (typeof $f19e2f === 'function') {
@@ -1423,23 +1420,22 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
 
-var _app = _interopRequireDefault(require("./app.vue"));
+var _app = require("./app.vue");
+
+var _app2 = _interopRequireDefault(_app);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-var _default = {
+exports.default = {
   components: {
-    app: _app.default
+    app: _app2.default
   }
-};
-exports.default = _default;
+}; //
+//
+//
+//
+//
         var $a72f1a = exports.default || module.exports;
       
       if (typeof $a72f1a === 'function') {
@@ -9465,7 +9461,6 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -9583,29 +9578,34 @@ var cron = function cron(Vue) {
   });
 };
 
-var _default = cron;
-exports.default = _default;
+exports.default = cron;
 },{}],"Zdfz":[function(require,module,exports) {
 "use strict";
 
-var _bootstrap = _interopRequireDefault(require("./bootstrap.vue"));
+var _bootstrap = require("./bootstrap.vue");
 
-var _Vue = _interopRequireDefault(require("Vue"));
+var _bootstrap2 = _interopRequireDefault(_bootstrap);
 
-var _index = _interopRequireDefault(require("../index.js"));
+var _Vue = require("Vue");
+
+var _Vue2 = _interopRequireDefault(_Vue);
+
+var _index = require("../index.js");
+
+var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_Vue.default.use(_index.default);
+_Vue2.default.use(_index2.default);
 
 window.onload = function () {
-  new _Vue.default({
+  new _Vue2.default({
     name: 'app',
     el: '#app',
     render: function render(h) {
-      return h(_bootstrap.default);
+      return h(_bootstrap2.default);
     }
   });
 };
 },{"./bootstrap.vue":"N7JA","Vue":"JjiN","../index.js":"S3PC"}]},{},["Zdfz"], null)
-//# sourceMappingURL=example.83050484.map
+//# sourceMappingURL=example.a6513803.map
