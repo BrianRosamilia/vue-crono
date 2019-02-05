@@ -9537,6 +9537,11 @@ var cron = function cron(Vue) {
             throw new Error("Cron method '".concat(method, "' does not exist and cannot be started."));
           }
         },
+        restart: function restart(method) {
+          _this2.$cron.stop(method);
+
+          _this2.$cron.start(method);
+        },
         time: function time(method, _time) {
           var currentDate = +new Date();
 
@@ -9608,4 +9613,4 @@ window.onload = function () {
   });
 };
 },{"./bootstrap.vue":"N7JA","Vue":"JjiN","../index.js":"S3PC"}]},{},["Zdfz"], null)
-//# sourceMappingURL=example.a6513803.map
+//# sourceMappingURL=example.055151f9.map

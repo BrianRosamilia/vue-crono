@@ -21,9 +21,9 @@ import crono from 'vue-crono';
 Vue.use(crono);
 ```
 
-**or** include from [https://unpkg.com/vue-crono@2.0.1/dist/index.js](https://unpkg.com/vue-crono@2.0.1/dist/index.js)
+**or** include from [https://unpkg.com/vue-crono@2.0.2/dist/index.js](https://unpkg.com/vue-crono@2.0.2/dist/index.js)
 
-`<script src="https://unpkg.com/vue-crono@2.0.1/dist/index.js"></script>` which will put the plugin on `window.crono`
+`<script src="https://unpkg.com/vue-crono@2.0.2/dist/index.js"></script>` which will put the plugin on `window.crono`
 
 **or** npm install the package and browse to `node_modules/vue-cron/dist/index.js` and copy the file into your application
 
@@ -88,13 +88,13 @@ cron:[{
 
 ## API
 
-If you create jobs via the `cron` option, you can manage them on the component instance using
+If you create jobs via the `cron` option, you can start, stop, and restart them on the component instance using
 
 `this.$cron.stop(methodName)`
 
-and
-
 `this.$cron.start(methodName)`
+
+`this.$cron.restart(methodName)`
 
 *Note:* Jobs are restarted from the beginning after being stopped.  Timers are cleaned up when components are destroyed.
 
@@ -103,6 +103,7 @@ You can adjust the time of existing jobs, even while they're running, using
 `this.$cron.time(methodName, time)`  
 
 This method is intelligent enough to know if the timer should have been invoked when decreasing the time of a job as well as extending the time to the next job run if you're increasing the timer.  Adjusting the time on a stopped job will behave as though you started it from scratch. (See unit tests if curious about this behavior)
+
 
 ## clean-time Component
 

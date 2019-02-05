@@ -65,6 +65,10 @@ const cron = Vue => {
                         throw new Error(`Cron method '${method}' does not exist and cannot be started.`);
                     }
                 },
+                restart: method =>{
+                    this.$cron.stop(method);
+                    this.$cron.start(method);
+                },
                 time: (method, time) => {
                     const currentDate = + new Date();
 
