@@ -262,7 +262,7 @@ describe('Clean-time', () => {
         expect(childCmp.renderedTime).toBe(expectedDate);
     });
 
-    test.only('Check time when crossing over an hour', () => {
+    test('Check time when crossing over an hour', () => {
         const mounted = new Cmp();
         mounted.$mount();
         const childCmp = mounted.$refs.smallestTime;
