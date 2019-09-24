@@ -29,77 +29,80 @@ const createTimer = function(cron){
     }
 };
 
-const cron = Vue => {
-    Vue.mixin({
-        mounted(){
-            if (this.$options.cron !== undefined){
-                mapOrSingle(this.$options.cron, createTimer.bind(this));
+const mixin = {
+    mounted(){
+    if (this.$options.cron !== undefined){
+        mapOrSingle(this.$options.cron, createTimer.bind(this));
+    }
+
+    this.$cron = {
+        stop: method => {
+            let locatedCronMethod = false;
+            mapOrSingle(this.$options.cron, cron => {
+                if (cron.method === method){
+                    locatedCronMethod = true;
+
+                    if(!this._cron[cron.method].timerRunning) return;
+
+                    clearInterval(this._cron[cron.method].timer);
+                    this._cron[cron.method].timerRunning = false;
+                }
+            });
+            if (!locatedCronMethod){
+                throw new Error(`Cron method '${method}' does not exist and cannot be stopped.`);
             }
-
-            this.$cron = {
-                stop: method => {
-                    let locatedCronMethod = false;
-                    mapOrSingle(this.$options.cron, cron => {
-                        if (cron.method === method){
-                            locatedCronMethod = true;
-
-                            if(!this._cron[cron.method].timerRunning) return;
-
-                            clearInterval(this._cron[cron.method].timer);
-                            this._cron[cron.method].timerRunning = false;
-                        }
-                    });
-                    if (!locatedCronMethod){
-                        throw new Error(`Cron method '${method}' does not exist and cannot be stopped.`);
-                    }
-                },
-                start: method => {
-                    let locatedCronMethod = false;
-                    mapOrSingle(this.$options.cron, cron => {
-                        if (cron.method === method){
-                            locatedCronMethod = true;
-                            createTimer.call(this, { ...cron, autoStart: true });
-                        }
-                    });
-                    if (!locatedCronMethod){
-                        throw new Error(`Cron method '${method}' does not exist and cannot be started.`);
-                    }
-                },
-                restart: method =>{
-                    this.$cron.stop(method);
-                    this.$cron.start(method);
-                },
-                time: (method, time) => {
-                    const currentDate = + new Date();
-
-                    if(!this._cron[method].timerRunning){
-                        this._cron[method].lastInvocation = currentDate;
-                    }
-                    const elapsed = currentDate - this._cron[method].lastInvocation;
-
-                    this.$cron.stop(method);
-
-                    if(elapsed > time){
-                        this.$options.methods[method].call(this);
-                        createTimer.call(this, { method, time});
-                    }
-                    else{
-                        setTimeout(() => {
-                            this.$options.methods[method].call(this);
-                            createTimer.call(this, { method, time});
-                        }, time - elapsed);
-                    }
-                }
-            };
         },
-        beforeDestroy(){
-            for(const prop in this._cron){
-                if(this._cron[prop] !== undefined){
-                    clearInterval(this._cron[prop].timer);
+        start: method => {
+            let locatedCronMethod = false;
+            mapOrSingle(this.$options.cron, cron => {
+                if (cron.method === method){
+                    locatedCronMethod = true;
+                    createTimer.call(this, { ...cron, autoStart: true });
                 }
+            });
+            if (!locatedCronMethod){
+                throw new Error(`Cron method '${method}' does not exist and cannot be started.`);
+            }
+        },
+        restart: method =>{
+            this.$cron.stop(method);
+            this.$cron.start(method);
+        },
+        time: (method, time) => {
+            const currentDate = + new Date();
+
+            if(!this._cron[method].timerRunning){
+                this._cron[method].lastInvocation = currentDate;
+            }
+            const elapsed = currentDate - this._cron[method].lastInvocation;
+
+            this.$cron.stop(method);
+
+            if(elapsed > time){
+                this.$options.methods[method].call(this);
+                createTimer.call(this, { method, time});
+            }
+            else{
+                setTimeout(() => {
+                    this.$options.methods[method].call(this);
+                    createTimer.call(this, { method, time});
+                }, time - elapsed);
             }
         }
-    });
+    };
+},
+    beforeDestroy(){
+    for(const prop in this._cron){
+        if(this._cron[prop] !== undefined){
+            clearInterval(this._cron[prop].timer);
+        }
+    }
+}
+};
+
+const cron = Vue => {
+    Vue.mixin(mixin);
 };
 
 export default cron;
+export { mixin };
