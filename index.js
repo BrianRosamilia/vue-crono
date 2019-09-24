@@ -105,4 +105,4 @@ const cron = Vue => {
 };
 
 export default cron;
-export { mixin };
+export { mixin as crono };

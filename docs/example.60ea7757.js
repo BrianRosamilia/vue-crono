@@ -1265,14 +1265,14 @@ exports.default = {
     method: 'refreshTime'
   }
 };
-        var $6ce9f2 = exports.default || module.exports;
+        var $306a7a = exports.default || module.exports;
       
-      if (typeof $6ce9f2 === 'function') {
-        $6ce9f2 = $6ce9f2.options;
+      if (typeof $306a7a === 'function') {
+        $306a7a = $306a7a.options;
       }
     
         /* template */
-        Object.assign($6ce9f2, (function () {
+        Object.assign($306a7a, (function () {
           var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"vue-crono-time"},[_vm._v("\n    "+_vm._s(_vm.renderedTime)+"\n")])}
 var staticRenderFns = []
 
@@ -1285,7 +1285,139 @@ var staticRenderFns = []
           };
         })());
       
-},{"es6-template-strings":"kMiM"}],"hWNS":[function(require,module,exports) {
+},{"es6-template-strings":"kMiM"}],"S3PC":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var mapOrSingle = function mapOrSingle(obj, fn) {
+  if (obj.constructor !== Array) {
+    return fn(obj);
+  } else {
+    return obj.map(fn);
+  }
+};
+
+var createTimer = function createTimer(cron) {
+  var _this = this;
+
+  this._cron = this._cron || {};
+  var method = cron.method;
+  if (this._cron[method] && this._cron[method].timerRunning) return;
+
+  if (cron.autoStart === false) {
+    this._cron[method] = {
+      timerRunning: false
+    };
+  } else {
+    this._cron[method] = {
+      timer: setInterval(function () {
+        _this.$options.methods[method].call(_this);
+
+        _this._cron[method].lastInvocation = +new Date();
+      }, cron.time),
+      timerRunning: true,
+      time: cron.time,
+      lastInvocation: +new Date()
+    };
+  }
+};
+
+var mixin = {
+  mounted: function mounted() {
+    var _this2 = this;
+
+    if (this.$options.cron !== undefined) {
+      mapOrSingle(this.$options.cron, createTimer.bind(this));
+    }
+
+    this.$cron = {
+      stop: function stop(method) {
+        var locatedCronMethod = false;
+        mapOrSingle(_this2.$options.cron, function (cron) {
+          if (cron.method === method) {
+            locatedCronMethod = true;
+            if (!_this2._cron[cron.method].timerRunning) return;
+            clearInterval(_this2._cron[cron.method].timer);
+            _this2._cron[cron.method].timerRunning = false;
+          }
+        });
+
+        if (!locatedCronMethod) {
+          throw new Error("Cron method '".concat(method, "' does not exist and cannot be stopped."));
+        }
+      },
+      start: function start(method) {
+        var locatedCronMethod = false;
+        mapOrSingle(_this2.$options.cron, function (cron) {
+          if (cron.method === method) {
+            locatedCronMethod = true;
+            createTimer.call(_this2, _extends({}, cron, {
+              autoStart: true
+            }));
+          }
+        });
+
+        if (!locatedCronMethod) {
+          throw new Error("Cron method '".concat(method, "' does not exist and cannot be started."));
+        }
+      },
+      restart: function restart(method) {
+        _this2.$cron.stop(method);
+
+        _this2.$cron.start(method);
+      },
+      time: function time(method, _time) {
+        var currentDate = +new Date();
+
+        if (!_this2._cron[method].timerRunning) {
+          _this2._cron[method].lastInvocation = currentDate;
+        }
+
+        var elapsed = currentDate - _this2._cron[method].lastInvocation;
+
+        _this2.$cron.stop(method);
+
+        if (elapsed > _time) {
+          _this2.$options.methods[method].call(_this2);
+
+          createTimer.call(_this2, {
+            method: method,
+            time: _time
+          });
+        } else {
+          setTimeout(function () {
+            _this2.$options.methods[method].call(_this2);
+
+            createTimer.call(_this2, {
+              method: method,
+              time: _time
+            });
+          }, _time - elapsed);
+        }
+      }
+    };
+  },
+  beforeDestroy: function beforeDestroy() {
+    for (var prop in this._cron) {
+      if (this._cron[prop] !== undefined) {
+        clearInterval(this._cron[prop].timer);
+      }
+    }
+  }
+};
+
+var cron = function cron(Vue) {
+  Vue.mixin(mixin);
+};
+
+exports.default = cron;
+exports.crono = mixin;
+},{}],"hWNS":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1296,9 +1428,60 @@ var _cleanTime = require("../cleanTime.vue");
 
 var _cleanTime2 = _interopRequireDefault(_cleanTime);
 
+var _index = require("../index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 exports.default = {
+  mixins: [_index.crono],
   data: function data() {
     var minuteAgo = new Date();
     var fiveMinutesAgo = new Date();
@@ -1345,62 +1528,15 @@ exports.default = {
     time: 5000,
     method: 'load'
   }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-        var $f19e2f = exports.default || module.exports;
+};
+        var $df95fe = exports.default || module.exports;
       
-      if (typeof $f19e2f === 'function') {
-        $f19e2f = $f19e2f.options;
+      if (typeof $df95fe === 'function') {
+        $df95fe = $df95fe.options;
       }
     
         /* template */
-        Object.assign($f19e2f, (function () {
+        Object.assign($df95fe, (function () {
           var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('h2',[_vm._v("vue-crono ⏰")]),_vm._v(" "),_c('div',{staticClass:"segment"},[_c('h3',[_vm._v("The current time is "+_vm._s(_vm.currentTime))]),_vm._v(" "),_vm._m(0),_vm._v(" "),(_vm.cronRunning)?_c('button',{on:{"click":_vm.stopTimer}},[_vm._v("Stop Timer")]):_vm._e(),_vm._v(" "),(!_vm.cronRunning)?_c('button',{on:{"click":_vm.startTimer}},[_vm._v("Start Timer")]):_vm._e()]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"segment"},[_c('h3',[_vm._v("Clean Time Display")]),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('div',{staticClass:"time-table"},[_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.fiveMinutesAgo,"round":1}}),_vm._v(" Minutes ago (capped at 55 minutes)\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.fiveHoursAgo}}),_vm._v(" Hours ago (capped at 8 hours)\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.yesterday}}),_vm._v(" Approximately one Day ago\n            "),_c('br'),_vm._v("\n            🕒"),_c('clean-time',{attrs:{"time":_vm.tenDaysAgo}}),_vm._v(" Days ago (displays actual date in user's locale format)\n        ")],1),_vm._v(" "),_c('p',[_vm._v("You can also change the display strings")]),_vm._v(" "),_c('div',{staticClass:"time-table"},[_vm._v("\n            🕒"),_c('clean-time',{ref:"smallestTime",attrs:{"time":_vm.minuteAgo,"round":1,"locale-map":{ en: {
                       minute: 'just now',
                       minutes: '${time} minutes ago',
@@ -1427,7 +1563,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
           };
         })());
       
-},{"../cleanTime.vue":"jBef"}],"N7JA":[function(require,module,exports) {
+},{"../cleanTime.vue":"jBef","../index.js":"S3PC"}],"N7JA":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1449,14 +1585,14 @@ exports.default = {
 //
 //
 //
-        var $a72f1a = exports.default || module.exports;
+        var $ced88d = exports.default || module.exports;
       
-      if (typeof $a72f1a === 'function') {
-        $a72f1a = $a72f1a.options;
+      if (typeof $ced88d === 'function') {
+        $ced88d = $ced88d.options;
       }
     
         /* template */
-        Object.assign($a72f1a, (function () {
+        Object.assign($ced88d, (function () {
           var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('app')],1)}
 var staticRenderFns = []
 
@@ -9468,135 +9604,6 @@ if (inBrowser) {
 
 var _default = Vue;
 exports.default = _default;
-},{}],"S3PC":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var mapOrSingle = function mapOrSingle(obj, fn) {
-  if (obj.constructor !== Array) {
-    return fn(obj);
-  } else {
-    return obj.map(fn);
-  }
-};
-
-var createTimer = function createTimer(cron) {
-  var _this = this;
-
-  this._cron = this._cron || {};
-  var method = cron.method;
-  if (this._cron[method] && this._cron[method].timerRunning) return;
-
-  if (cron.autoStart === false) {
-    this._cron[method] = {
-      timerRunning: false
-    };
-  } else {
-    this._cron[method] = {
-      timer: setInterval(function () {
-        _this.$options.methods[method].call(_this);
-
-        _this._cron[method].lastInvocation = +new Date();
-      }, cron.time),
-      timerRunning: true,
-      time: cron.time,
-      lastInvocation: +new Date()
-    };
-  }
-};
-
-var cron = function cron(Vue) {
-  Vue.mixin({
-    mounted: function mounted() {
-      var _this2 = this;
-
-      if (this.$options.cron !== undefined) {
-        mapOrSingle(this.$options.cron, createTimer.bind(this));
-      }
-
-      this.$cron = {
-        stop: function stop(method) {
-          var locatedCronMethod = false;
-          mapOrSingle(_this2.$options.cron, function (cron) {
-            if (cron.method === method) {
-              locatedCronMethod = true;
-              if (!_this2._cron[cron.method].timerRunning) return;
-              clearInterval(_this2._cron[cron.method].timer);
-              _this2._cron[cron.method].timerRunning = false;
-            }
-          });
-
-          if (!locatedCronMethod) {
-            throw new Error("Cron method '".concat(method, "' does not exist and cannot be stopped."));
-          }
-        },
-        start: function start(method) {
-          var locatedCronMethod = false;
-          mapOrSingle(_this2.$options.cron, function (cron) {
-            if (cron.method === method) {
-              locatedCronMethod = true;
-              createTimer.call(_this2, _extends({}, cron, {
-                autoStart: true
-              }));
-            }
-          });
-
-          if (!locatedCronMethod) {
-            throw new Error("Cron method '".concat(method, "' does not exist and cannot be started."));
-          }
-        },
-        restart: function restart(method) {
-          _this2.$cron.stop(method);
-
-          _this2.$cron.start(method);
-        },
-        time: function time(method, _time) {
-          var currentDate = +new Date();
-
-          if (!_this2._cron[method].timerRunning) {
-            _this2._cron[method].lastInvocation = currentDate;
-          }
-
-          var elapsed = currentDate - _this2._cron[method].lastInvocation;
-
-          _this2.$cron.stop(method);
-
-          if (elapsed > _time) {
-            _this2.$options.methods[method].call(_this2);
-
-            createTimer.call(_this2, {
-              method: method,
-              time: _time
-            });
-          } else {
-            setTimeout(function () {
-              _this2.$options.methods[method].call(_this2);
-
-              createTimer.call(_this2, {
-                method: method,
-                time: _time
-              });
-            }, _time - elapsed);
-          }
-        }
-      };
-    },
-    beforeDestroy: function beforeDestroy() {
-      for (var prop in this._cron) {
-        if (this._cron[prop] !== undefined) {
-          clearInterval(this._cron[prop].timer);
-        }
-      }
-    }
-  });
-};
-
-exports.default = cron;
 },{}],"Zdfz":[function(require,module,exports) {
 "use strict";
 
@@ -9626,4 +9633,4 @@ window.onload = function () {
   });
 };
 },{"./bootstrap.vue":"N7JA","Vue":"JjiN","../index.js":"S3PC"}]},{},["Zdfz"], null)
-//# sourceMappingURL=example.ff4f986a.js.map
+//# sourceMappingURL=example.60ea7757.js.map
