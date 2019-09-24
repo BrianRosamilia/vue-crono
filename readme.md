@@ -29,9 +29,9 @@ or inside your component
 import { crono } from 'vue-crono';
 
 //Your component
- export default{
-     mixins: [crono]
- }
+export default{
+    mixins: [crono]
+}
 ```
 
 **or** include from [https://unpkg.com/vue-crono@2.0.5/dist/index.js](https://unpkg.com/vue-crono@2.0.5/dist/index.js)
