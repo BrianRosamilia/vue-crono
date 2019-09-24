@@ -16,12 +16,14 @@ Easily schedule and manage cron jobs in Vue components
 npm install vue-crono --save
 ```
 
+Install globally
+
 ```javascript
 import crono from 'vue-crono';
 Vue.use(crono);
 ```
 
-or (to use this plugin as a plain mixin)
+or inside your component
 
 ```javascript
 import { crono } from 'vue-crono';
