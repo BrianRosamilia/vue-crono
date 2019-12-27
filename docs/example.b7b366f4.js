@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"P6+E":[function(require,module,exports) {
+})({"P6EP":[function(require,module,exports) {
 "use strict";
 
 module.exports = function () {
@@ -185,7 +185,7 @@ module.exports = function (val) {
  return (val !== _undefined) && (val !== null);
 };
 
-},{"../function/noop":"qYbH"}],"3cwc":[function(require,module,exports) {
+},{"../function/noop":"qYbH"}],"cwcK":[function(require,module,exports) {
 "use strict";
 
 var isValue = require("../is-value");
@@ -199,7 +199,7 @@ module.exports = function (object) { return keys(isValue(object) ? Object(object
 
 module.exports = require("./is-implemented")() ? Object.keys : require("./shim");
 
-},{"./is-implemented":"gq3z","./shim":"3cwc"}],"XtTh":[function(require,module,exports) {
+},{"./is-implemented":"gq3z","./shim":"cwcK"}],"XtTh":[function(require,module,exports) {
 "use strict";
 
 var isValue = require("./is-value");
@@ -234,14 +234,14 @@ module.exports = function (dest, src /*, …srcn*/) {
 	return dest;
 };
 
-},{"../keys":"nhVq","../valid-value":"XtTh"}],"flj+":[function(require,module,exports) {
+},{"../keys":"nhVq","../valid-value":"XtTh"}],"flj8":[function(require,module,exports) {
 "use strict";
 
 module.exports = require("./is-implemented")()
 	? Object.assign
 	: require("./shim");
 
-},{"./is-implemented":"y60x","./shim":"ojUF"}],"1uac":[function(require,module,exports) {
+},{"./is-implemented":"y60x","./shim":"ojUF"}],"uacS":[function(require,module,exports) {
 
 "use strict";
 
@@ -273,7 +273,7 @@ module.exports = function (obj) {
  return typeof obj === "function";
 };
 
-},{}],"753d":[function(require,module,exports) {
+},{}],"dfav":[function(require,module,exports) {
 "use strict";
 
 var str = "razdwatrzy";
@@ -283,7 +283,7 @@ module.exports = function () {
 	return (str.contains("dwa") === true) && (str.contains("foo") === false);
 };
 
-},{}],"3RK5":[function(require,module,exports) {
+},{}],"RK54":[function(require,module,exports) {
 "use strict";
 
 var indexOf = String.prototype.indexOf;
@@ -292,14 +292,14 @@ module.exports = function (searchString/*, position*/) {
 	return indexOf.call(this, searchString, arguments[1]) > -1;
 };
 
-},{}],"z+/R":[function(require,module,exports) {
+},{}],"zRHi":[function(require,module,exports) {
 "use strict";
 
 module.exports = require("./is-implemented")()
 	? String.prototype.contains
 	: require("./shim");
 
-},{"./is-implemented":"753d","./shim":"3RK5"}],"iAJW":[function(require,module,exports) {
+},{"./is-implemented":"dfav","./shim":"RK54"}],"iAJW":[function(require,module,exports) {
 'use strict';
 
 var assign        = require('es5-ext/object/assign')
@@ -364,7 +364,7 @@ d.gs = function (dscr, get, set/*, options*/) {
 	return !options ? desc : assign(normalizeOpts(options), desc);
 };
 
-},{"es5-ext/object/assign":"flj+","es5-ext/object/normalize-options":"1uac","es5-ext/object/is-callable":"az0W","es5-ext/string/#/contains":"z+/R"}],"X3hX":[function(require,module,exports) {
+},{"es5-ext/object/assign":"flj8","es5-ext/object/normalize-options":"uacS","es5-ext/object/is-callable":"az0W","es5-ext/string/#/contains":"zRHi"}],"X3hX":[function(require,module,exports) {
 'use strict';
 
 module.exports = function (x) {
@@ -510,7 +510,7 @@ defineProperty(HiddenSymbol.prototype, SymbolPolyfill.toPrimitive,
 
 module.exports = require('./is-implemented')() ? Symbol : require('./polyfill');
 
-},{"./is-implemented":"kKrP","./polyfill":"BOeD"}],"VbS+":[function(require,module,exports) {
+},{"./is-implemented":"kKrP","./polyfill":"BOeD"}],"VbSU":[function(require,module,exports) {
 "use strict";
 
 var objToString = Object.prototype.toString
@@ -524,7 +524,7 @@ module.exports = function (value) {
 	return objToString.call(value) === id;
 };
 
-},{}],"1nFM":[function(require,module,exports) {
+},{}],"nFMo":[function(require,module,exports) {
 "use strict";
 
 var objToString = Object.prototype.toString, id = objToString.call(require("./noop"));
@@ -533,7 +533,7 @@ module.exports = function (value) {
 	return typeof value === "function" && objToString.call(value) === id;
 };
 
-},{"./noop":"qYbH"}],"21NF":[function(require,module,exports) {
+},{"./noop":"qYbH"}],"NF9A":[function(require,module,exports) {
 "use strict";
 
 module.exports = function () {
@@ -542,7 +542,7 @@ module.exports = function () {
 	return (sign(10) === 1) && (sign(-20) === -1);
 };
 
-},{}],"8sEr":[function(require,module,exports) {
+},{}],"sErf":[function(require,module,exports) {
 "use strict";
 
 module.exports = function (value) {
@@ -558,7 +558,7 @@ module.exports = require("./is-implemented")()
 	? Math.sign
 	: require("./shim");
 
-},{"./is-implemented":"21NF","./shim":"8sEr"}],"vc2B":[function(require,module,exports) {
+},{"./is-implemented":"NF9A","./shim":"sErf"}],"vc2B":[function(require,module,exports) {
 "use strict";
 
 var sign = require("../math/sign")
@@ -606,7 +606,7 @@ module.exports = function (value) {
 	);
 };
 
-},{}],"Qpp/":[function(require,module,exports) {
+},{}],"QppK":[function(require,module,exports) {
 "use strict";
 
 var iteratorSymbol = require("es6-symbol").iterator
@@ -727,14 +727,14 @@ module.exports = function (arrayLike /*, mapFn, thisArg*/) {
 	return arr;
 };
 
-},{"es6-symbol":"QUJB","../../function/is-arguments":"VbS+","../../function/is-function":"1nFM","../../number/to-pos-integer":"UcXu","../../object/valid-callable":"N9bW","../../object/valid-value":"XtTh","../../object/is-value":"f648","../../string/is-string":"j98K"}],"ARJj":[function(require,module,exports) {
+},{"es6-symbol":"QUJB","../../function/is-arguments":"VbSU","../../function/is-function":"nFMo","../../number/to-pos-integer":"UcXu","../../object/valid-callable":"N9bW","../../object/valid-value":"XtTh","../../object/is-value":"f648","../../string/is-string":"j98K"}],"ARJj":[function(require,module,exports) {
 "use strict";
 
 module.exports = require("./is-implemented")()
 	? Array.from
 	: require("./shim");
 
-},{"./is-implemented":"P6+E","./shim":"Qpp/"}],"8BuV":[function(require,module,exports) {
+},{"./is-implemented":"P6EP","./shim":"QppK"}],"BuVJ":[function(require,module,exports) {
 "use strict";
 
 var forEach = Array.prototype.forEach, create = Object.create;
@@ -756,7 +756,7 @@ var from         = require('es5-ext/array/from')
 
 module.exports = primitiveSet.apply(null, from('\n\r\u2028\u2029'));
 
-},{"es5-ext/array/from":"ARJj","es5-ext/object/primitive-set":"8BuV"}],"Ebxe":[function(require,module,exports) {
+},{"es5-ext/array/from":"ARJj","es5-ext/object/primitive-set":"BuVJ"}],"Ebxe":[function(require,module,exports) {
 'use strict';
 
 var from         = require('es5-ext/array/from')
@@ -766,7 +766,7 @@ module.exports = primitiveSet.apply(null, from(' \f\t\v​\u00a0\u1680​\u180e'
 	'\u2000​\u2001\u2002​\u2003\u2004​\u2005\u2006​\u2007\u2008​\u2009\u200a' +
 	'​​​\u202f\u205f​\u3000'));
 
-},{"es5-ext/array/from":"ARJj","es5-ext/object/primitive-set":"8BuV"}],"yuAS":[function(require,module,exports) {
+},{"es5-ext/array/from":"ARJj","es5-ext/object/primitive-set":"BuVJ"}],"yuAS":[function(require,module,exports) {
 'use strict';
 
 var primitiveSet = require('es5-ext/object/primitive-set')
@@ -776,7 +776,7 @@ var primitiveSet = require('es5-ext/object/primitive-set')
 module.exports = primitiveSet.apply(null,
 	Object.keys(eol).concat(Object.keys(inline)));
 
-},{"es5-ext/object/primitive-set":"8BuV","./ws-eol":"jqXd","./ws-inline":"Ebxe"}],"4uDg":[function(require,module,exports) {
+},{"es5-ext/object/primitive-set":"BuVJ","./ws-eol":"jqXd","./ws-inline":"Ebxe"}],"uDgj":[function(require,module,exports) {
 'use strict';
 
 var from         = require('es5-ext/array/from')
@@ -1008,7 +1008,7 @@ Object.defineProperties(exports, {
 	resume: d(function () { return $common; })
 });
 
-},{"es5-ext/array/from":"ARJj","es5-ext/object/primitive-set":"8BuV","es5-ext/object/valid-value":"XtTh","es5-ext/object/valid-callable":"N9bW","d":"iAJW","./lib/ws-eol":"jqXd","./lib/ws":"yuAS"}],"ND+n":[function(require,module,exports) {
+},{"es5-ext/array/from":"ARJj","es5-ext/object/primitive-set":"BuVJ","es5-ext/object/valid-value":"XtTh","es5-ext/object/valid-callable":"N9bW","d":"iAJW","./lib/ws-eol":"jqXd","./lib/ws":"yuAS"}],"NDNn":[function(require,module,exports) {
 'use strict';
 
 var esniff = require('esniff')
@@ -1089,7 +1089,7 @@ module.exports = function (str) {
 	return result;
 };
 
-},{"esniff":"4uDg"}],"ph+b":[function(require,module,exports) {
+},{"esniff":"uDgj"}],"phBX":[function(require,module,exports) {
 // Credit: Mathias Bynens -> https://mathiasbynens.be/demo/javascript-identifier-regex
 
 'use strict';
@@ -1133,7 +1133,7 @@ module.exports = function (data, context/*, options*/) {
 	}));
 };
 
-},{"es5-ext/object/valid-value":"XtTh","es5-ext/object/normalize-options":"1uac","esniff/is-var-name-valid":"ph+b"}],"/qke":[function(require,module,exports) {
+},{"es5-ext/object/valid-value":"XtTh","es5-ext/object/normalize-options":"uacS","esniff/is-var-name-valid":"phBX"}],"qkef":[function(require,module,exports) {
 'use strict';
 
 var reduce = Array.prototype.reduce;
@@ -1145,7 +1145,7 @@ module.exports = function (literals/*, …substitutions*/) {
 	});
 };
 
-},{}],"7eKe":[function(require,module,exports) {
+},{}],"eKed":[function(require,module,exports) {
 'use strict';
 
 var resolve  = require('./resolve')
@@ -1155,7 +1155,7 @@ module.exports = function (data, context/*, options*/) {
 	return passthru.apply(null, resolve(data, context, arguments[2]));
 };
 
-},{"./resolve":"uxvn","./passthru":"/qke"}],"kMiM":[function(require,module,exports) {
+},{"./resolve":"uxvn","./passthru":"qkef"}],"kMiM":[function(require,module,exports) {
 'use strict';
 
 var compile = require('./compile')
@@ -1165,7 +1165,7 @@ module.exports = function (template, context/*, options*/) {
 	return resolve(compile(template), context, arguments[2]);
 };
 
-},{"./compile":"ND+n","./resolve-to-string":"7eKe"}],"jBef":[function(require,module,exports) {
+},{"./compile":"NDNn","./resolve-to-string":"eKed"}],"jBef":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1285,139 +1285,7 @@ var staticRenderFns = []
           };
         })());
       
-},{"es6-template-strings":"kMiM"}],"S3PC":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var mapOrSingle = function mapOrSingle(obj, fn) {
-  if (obj.constructor !== Array) {
-    return fn(obj);
-  } else {
-    return obj.map(fn);
-  }
-};
-
-var createTimer = function createTimer(cron) {
-  var _this = this;
-
-  this._cron = this._cron || {};
-  var method = cron.method;
-  if (this._cron[method] && this._cron[method].timerRunning) return;
-
-  if (cron.autoStart === false) {
-    this._cron[method] = {
-      timerRunning: false
-    };
-  } else {
-    this._cron[method] = {
-      timer: setInterval(function () {
-        _this.$options.methods[method].call(_this);
-
-        _this._cron[method].lastInvocation = +new Date();
-      }, cron.time),
-      timerRunning: true,
-      time: cron.time,
-      lastInvocation: +new Date()
-    };
-  }
-};
-
-var mixin = {
-  mounted: function mounted() {
-    var _this2 = this;
-
-    if (this.$options.cron !== undefined) {
-      mapOrSingle(this.$options.cron, createTimer.bind(this));
-    }
-
-    this.$cron = {
-      stop: function stop(method) {
-        var locatedCronMethod = false;
-        mapOrSingle(_this2.$options.cron, function (cron) {
-          if (cron.method === method) {
-            locatedCronMethod = true;
-            if (!_this2._cron[cron.method].timerRunning) return;
-            clearInterval(_this2._cron[cron.method].timer);
-            _this2._cron[cron.method].timerRunning = false;
-          }
-        });
-
-        if (!locatedCronMethod) {
-          throw new Error("Cron method '".concat(method, "' does not exist and cannot be stopped."));
-        }
-      },
-      start: function start(method) {
-        var locatedCronMethod = false;
-        mapOrSingle(_this2.$options.cron, function (cron) {
-          if (cron.method === method) {
-            locatedCronMethod = true;
-            createTimer.call(_this2, _extends({}, cron, {
-              autoStart: true
-            }));
-          }
-        });
-
-        if (!locatedCronMethod) {
-          throw new Error("Cron method '".concat(method, "' does not exist and cannot be started."));
-        }
-      },
-      restart: function restart(method) {
-        _this2.$cron.stop(method);
-
-        _this2.$cron.start(method);
-      },
-      time: function time(method, _time) {
-        var currentDate = +new Date();
-
-        if (!_this2._cron[method].timerRunning) {
-          _this2._cron[method].lastInvocation = currentDate;
-        }
-
-        var elapsed = currentDate - _this2._cron[method].lastInvocation;
-
-        _this2.$cron.stop(method);
-
-        if (elapsed > _time) {
-          _this2.$options.methods[method].call(_this2);
-
-          createTimer.call(_this2, {
-            method: method,
-            time: _time
-          });
-        } else {
-          setTimeout(function () {
-            _this2.$options.methods[method].call(_this2);
-
-            createTimer.call(_this2, {
-              method: method,
-              time: _time
-            });
-          }, _time - elapsed);
-        }
-      }
-    };
-  },
-  beforeDestroy: function beforeDestroy() {
-    for (var prop in this._cron) {
-      if (this._cron[prop] !== undefined) {
-        clearInterval(this._cron[prop].timer);
-      }
-    }
-  }
-};
-
-var cron = function cron(Vue) {
-  Vue.mixin(mixin);
-};
-
-exports.default = cron;
-exports.crono = mixin;
-},{}],"hWNS":[function(require,module,exports) {
+},{"es6-template-strings":"kMiM"}],"hWNS":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1428,60 +1296,9 @@ var _cleanTime = require("../cleanTime.vue");
 
 var _cleanTime2 = _interopRequireDefault(_cleanTime);
 
-var _index = require("../index.js");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 exports.default = {
-  mixins: [_index.crono],
   data: function data() {
     var minuteAgo = new Date();
     var fiveMinutesAgo = new Date();
@@ -1528,7 +1345,54 @@ exports.default = {
     time: 5000,
     method: 'load'
   }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
         var $df95fe = exports.default || module.exports;
       
       if (typeof $df95fe === 'function') {
@@ -1563,7 +1427,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
           };
         })());
       
-},{"../cleanTime.vue":"jBef","../index.js":"S3PC"}],"N7JA":[function(require,module,exports) {
+},{"../cleanTime.vue":"jBef"}],"N7JA":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6628,9 +6492,8 @@ var KeepAlive = {
 };
 var builtInComponents = {
   KeepAlive: KeepAlive
-  /*  */
-
 };
+/*  */
 
 function initGlobalAPI(Vue) {
   // config
@@ -8035,9 +7898,8 @@ function baseSetAttr(el, key, value) {
 var attrs = {
   create: updateAttrs,
   update: updateAttrs
-  /*  */
-
 };
+/*  */
 
 function updateClass(oldVnode, vnode) {
   var el = vnode.elm;
@@ -8066,30 +7928,30 @@ function updateClass(oldVnode, vnode) {
 var klass = {
   create: updateClass,
   update: updateClass
-  /*  */
-
-  /*  */
-  // add a raw attr (use this in preTransforms)
-  // note: this only removes the attr from the Array (attrsList) so that it
-  // doesn't get processed by processAttrs.
-  // By default it does NOT remove it from the map (attrsMap) because the map is
-  // needed during codegen.
-
-  /*  */
-
-  /**
-   * Cross-platform code generation for component v-model
-   */
-
-  /**
-   * Cross-platform codegen helper for generating v-model value assignment code.
-   */
-
-  /*  */
-  // in some cases, the event used has to be determined at runtime
-  // so we used some reserved tokens during compile.
-
 };
+/*  */
+
+/*  */
+// add a raw attr (use this in preTransforms)
+// note: this only removes the attr from the Array (attrsList) so that it
+// doesn't get processed by processAttrs.
+// By default it does NOT remove it from the map (attrsMap) because the map is
+// needed during codegen.
+
+/*  */
+
+/**
+ * Cross-platform code generation for component v-model
+ */
+
+/**
+ * Cross-platform codegen helper for generating v-model value assignment code.
+ */
+
+/*  */
+// in some cases, the event used has to be determined at runtime
+// so we used some reserved tokens during compile.
+
 var RANGE_TOKEN = '__r';
 var CHECKBOX_RADIO_TOKEN = '__c';
 /*  */
@@ -8164,9 +8026,8 @@ function updateDOMListeners(oldVnode, vnode) {
 var events = {
   create: updateDOMListeners,
   update: updateDOMListeners
-  /*  */
-
 };
+/*  */
 
 function updateDOMProps(oldVnode, vnode) {
   if (isUndef(oldVnode.data.domProps) && isUndef(vnode.data.domProps)) {
@@ -8268,9 +8129,9 @@ function isDirtyWithModifiers(elm, newVal) {
 var domProps = {
   create: updateDOMProps,
   update: updateDOMProps
-  /*  */
-
 };
+/*  */
+
 var parseStyleText = cached(function (cssText) {
   var res = {};
   var listDelimiter = /;(?![^(]*\))/g;
@@ -8428,14 +8289,13 @@ function updateStyle(oldVnode, vnode) {
 var style = {
   create: updateStyle,
   update: updateStyle
-  /*  */
-
-  /**
-   * Add class with compatibility for SVG since classList is not supported on
-   * SVG elements in IE
-   */
-
 };
+/*  */
+
+/**
+ * Add class with compatibility for SVG since classList is not supported on
+ * SVG elements in IE
+ */
 
 function addClass(el, cls) {
   /* istanbul ignore if */
@@ -9208,11 +9068,11 @@ var show = {
 var platformDirectives = {
   model: directive,
   show: show
-  /*  */
-  // Provides transition support for a single element/component.
-  // supports transition mode (out-in / in-out)
-
 };
+/*  */
+// Provides transition support for a single element/component.
+// supports transition mode (out-in / in-out)
+
 var transitionProps = {
   name: String,
   appear: Boolean,
@@ -9385,18 +9245,18 @@ var Transition = {
 
     return rawChild;
   }
-  /*  */
-  // Provides transition support for list items.
-  // supports move transitions using the FLIP technique.
-  // Because the vdom's children update algorithm is "unstable" - i.e.
-  // it doesn't guarantee the relative positioning of removed elements,
-  // we force transition-group to update its children into two passes:
-  // in the first pass, we remove all nodes that need to be removed,
-  // triggering their leaving transition; in the second pass, we insert/move
-  // into the final desired state. This way in the second pass removed
-  // nodes will remain where they should be.
-
 };
+/*  */
+// Provides transition support for list items.
+// supports move transitions using the FLIP technique.
+// Because the vdom's children update algorithm is "unstable" - i.e.
+// it doesn't guarantee the relative positioning of removed elements,
+// we force transition-group to update its children into two passes:
+// in the first pass, we remove all nodes that need to be removed,
+// triggering their leaving transition; in the second pass, we insert/move
+// into the final desired state. This way in the second pass removed
+// nodes will remain where they should be.
+
 var props = extend({
   tag: String,
   moveClass: String
@@ -9561,10 +9421,10 @@ function applyTranslation(c) {
 var platformComponents = {
   Transition: Transition,
   TransitionGroup: TransitionGroup
-  /*  */
-  // install platform specific utils
-
 };
+/*  */
+// install platform specific utils
+
 Vue.config.mustUseProp = mustUseProp;
 Vue.config.isReservedTag = isReservedTag;
 Vue.config.isReservedAttr = isReservedAttr;
@@ -9604,6 +9464,138 @@ if (inBrowser) {
 
 var _default = Vue;
 exports.default = _default;
+},{}],"S3PC":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var mapOrSingle = function mapOrSingle(obj, fn) {
+  if (obj.constructor !== Array) {
+    return fn(obj);
+  } else {
+    return obj.map(fn);
+  }
+};
+
+var createTimer = function createTimer(cron) {
+  var _this = this;
+
+  this._cron = this._cron || {};
+  var method = cron.method;
+  if (this._cron[method] && this._cron[method].timerRunning) return;
+
+  if (cron.autoStart === false) {
+    this._cron[method] = {
+      timerRunning: false
+    };
+  } else {
+    this._cron[method] = {
+      timer: setInterval(function () {
+        _this.$options.methods[method].call(_this);
+
+        _this._cron[method].lastInvocation = +new Date();
+      }, cron.time),
+      timerRunning: true,
+      time: cron.time,
+      lastInvocation: +new Date()
+    };
+  }
+};
+
+var mixin = {
+  mounted: function mounted() {
+    var _this2 = this;
+
+    if (this.$options.cron !== undefined) {
+      mapOrSingle(this.$options.cron, createTimer.bind(this));
+    }
+
+    this.$cron = {
+      stop: function stop(method) {
+        var locatedCronMethod = false;
+        mapOrSingle(_this2.$options.cron, function (cron) {
+          if (cron.method === method) {
+            locatedCronMethod = true;
+            if (!_this2._cron[cron.method].timerRunning) return;
+            clearInterval(_this2._cron[cron.method].timer);
+            _this2._cron[cron.method].timerRunning = false;
+          }
+        });
+
+        if (!locatedCronMethod) {
+          throw new Error("Cron method '".concat(method, "' does not exist and cannot be stopped."));
+        }
+      },
+      start: function start(method) {
+        var locatedCronMethod = false;
+        mapOrSingle(_this2.$options.cron, function (cron) {
+          if (cron.method === method) {
+            locatedCronMethod = true;
+            createTimer.call(_this2, _extends({}, cron, {
+              autoStart: true
+            }));
+          }
+        });
+
+        if (!locatedCronMethod) {
+          throw new Error("Cron method '".concat(method, "' does not exist and cannot be started."));
+        }
+      },
+      restart: function restart(method) {
+        _this2.$cron.stop(method);
+
+        _this2.$cron.start(method);
+      },
+      time: function time(method, _time) {
+        var currentDate = +new Date();
+
+        if (!_this2._cron[method].timerRunning) {
+          _this2._cron[method].lastInvocation = currentDate;
+        }
+
+        var elapsed = currentDate - _this2._cron[method].lastInvocation;
+
+        _this2.$cron.stop(method);
+
+        if (elapsed > _time) {
+          _this2.$options.methods[method].call(_this2);
+
+          createTimer.call(_this2, {
+            method: method,
+            time: _time
+          });
+        } else {
+          setTimeout(function () {
+            _this2.$options.methods[method].call(_this2);
+
+            createTimer.call(_this2, {
+              method: method,
+              time: _time
+            });
+          }, _time - elapsed);
+        }
+      }
+    };
+  },
+  beforeDestroy: function beforeDestroy() {
+    for (var prop in this._cron) {
+      if (this._cron[prop] !== undefined) {
+        clearInterval(this._cron[prop].timer);
+      }
+    }
+  }
+};
+
+var cron = function cron(Vue) {
+  Vue.mixin(mixin);
+};
+
+exports.default = cron;
+exports.crono = mixin;
 },{}],"Zdfz":[function(require,module,exports) {
 "use strict";
 
@@ -9633,4 +9625,4 @@ window.onload = function () {
   });
 };
 },{"./bootstrap.vue":"N7JA","Vue":"JjiN","../index.js":"S3PC"}]},{},["Zdfz"], null)
-//# sourceMappingURL=example.60ea7757.js.map
+//# sourceMappingURL=example.b7b366f4.js.map
