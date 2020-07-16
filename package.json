@@ -1,6 +1,6 @@
 {
   "name": "vue-crono",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "Simple timers/jobs for vue components",
   "main": "index.js",
   "scripts": {

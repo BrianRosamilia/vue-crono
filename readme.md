@@ -34,9 +34,9 @@ export default{
 }
 ```
 
-**or** include from [https://unpkg.com/vue-crono@2.0.6/dist/index.js](https://unpkg.com/vue-crono@2.0.6/dist/index.js)
+**or** include from [https://unpkg.com/vue-crono@2.0.8/dist/index.js](https://unpkg.com/vue-crono@2.0.8/dist/index.js)
 
-`<script src="https://unpkg.com/vue-crono@2.0.6/dist/index.js"></script>` which will put the plugin on `window.crono`
+`<script src="https://unpkg.com/vue-crono@2.0.8/dist/index.js"></script>` which will put the plugin on `window.crono`
 
 **or** npm install the package and browse to `node_modules/vue-cron/dist/index.js` and copy the file into your application
 
